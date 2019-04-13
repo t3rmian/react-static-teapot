@@ -1,5 +1,6 @@
 /tmp
 /artifacts
+/dist
 # Created by https://www.gitignore.io/api/node,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,visualstudiocode
 
