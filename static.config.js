@@ -1,11 +1,8 @@
-import chokidar from 'chokidar';
 import jdown from 'jdown';
 import path from 'path';
-import { reloadClientData } from 'react-static/node';
-
-chokidar.watch("content").on("all", () => reloadClientData());
 
 export default {
+  siteRoot: 'https://d3v.netlify.com',
   getSiteData: () => ({
     title: "React Static"
   }),
@@ -69,7 +66,7 @@ export default {
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {
-        location: path.resolve("./src/pages").replace(/\\/g, "/")
+        location: path.resolve("./src/pages")
       }
     ],
     require.resolve("react-static-plugin-reach-router"),
