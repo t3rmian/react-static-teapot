@@ -1,17 +1,20 @@
-import React from 'react'
-import { Root, Routes, addPrefetchExcludes } from 'react-static'
-//
-import { Link, Router } from 'components/Router'
-import Dynamic from 'containers/Dynamic'
+import './app.css';
 
-import './app.css'
+import { Link, Router } from 'components/Router';
+import Dynamic from 'containers/Dynamic';
+import React from 'react';
+import { addPrefetchExcludes, Head, Root, Routes } from 'react-static';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['dynamic'])
+addPrefetchExcludes(["dynamic"]);
 
 function App() {
   return (
     <Root>
+      <Head>
+        <title>AAAAAAAA</title>
+        <meta name="robots" content="noindex" />
+      </Head>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
@@ -27,7 +30,7 @@ function App() {
         </React.Suspense>
       </div>
     </Root>
-  )
+  );
 }
 
-export default App
+export default App;

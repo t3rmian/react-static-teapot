@@ -11,8 +11,13 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
+    "chokidar": "^2.1.5",
+    "htmr": "^0.7.0",
+    "i18next": "^15.0.9",
+    "jdown": "^1.0.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-i18next": "^10.7.0",
     "react-static": "^7.0.0",
     "react-static-plugin-reach-router": "^7.0.0",
     "react-static-plugin-sitemap": "^7.0.0",
