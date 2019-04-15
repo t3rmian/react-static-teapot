@@ -6,6 +6,7 @@ import { useRouteData } from 'react-static';
 export default function Blog() {
   const { t, i18n } = useTranslation();
   let { posts, lang, isDefault } = useRouteData();
+  i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
     return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
@@ -32,7 +33,7 @@ export default function Blog() {
       <h1>It's blog time.</h1>
       <div>
         <a href="#bottom" id="top">
-          Scroll to bottom!
+          {t("Scroll to bottom!")}
         </a>
       </div>
       <br />
@@ -43,39 +44,43 @@ export default function Blog() {
           "\t"
         )}
       </pre>
-      Recent Posts:
-      {groupBy(posts, post => post.fileInfo.createdAt.substring(0, 7)).map(
-        monthlyPosts => (
-          <table key={monthlyPosts[0]}>
-            <thead>
+      {t('Recent')}
+      {groupBy(posts, post =>
+        t("date=year+month", { date: new Date(post.fileInfo.createdAt) })
+      ).map(monthlyPosts => (
+        <table key={monthlyPosts[0]}>
+          <thead>
+            <tr>
+              <th>{monthlyPosts[0]}</th>
+            </tr>
+          </thead>
+          {monthlyPosts[1].map(post => (
+            <tbody key={post.id}>
               <tr>
-                <th>{monthlyPosts[0]}</th>
+                <td>
+                  {t("date=year+month+day", {
+                    date: new Date(post.fileInfo.createdAt)
+                  })}
+                </td>
+                <td>
+                  <Link
+                    to={
+                      isDefault
+                        ? `/blog/post/${post.id}/`
+                        : `/${lang}/blog/post/${post.id}/`
+                    }
+                  >
+                    {post.title}
+                  </Link>
+                </td>
               </tr>
-            </thead>
-            {monthlyPosts[1].map(post => (
-              <tbody key={post.id}>
-                <tr>
-                  <td>{post.fileInfo.createdAt}</td>
-                  <td>
-                    <Link
-                      to={
-                        isDefault
-                          ? `/blog/post/${post.id}/`
-                          : `/${lang}/blog/post/${post.id}/`
-                      }
-                    >
-                      {post.title}
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        )
-      )}
-      <a onClick={() => setExpanded(true)}>Read more</a>
+            </tbody>
+          ))}
+        </table>
+      ))}
+      <a onClick={() => setExpanded(true)}>{t("More")}</a>
       <a href="#top" id="bottom">
-        Scroll to top!
+        {t("Scroll to top!")}
       </a>
     </div>
   );
