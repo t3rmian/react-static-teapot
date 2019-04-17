@@ -10,8 +10,8 @@ export default {
     const defaultLanguage = "en";
     const blog = await jdown("content/posts", { fileInfo: true });
     const home = await jdown("content/home", { fileInfo: true });
-    const concat = (x,y) => x.concat(y)
-    const flatMap = (xs, f) => xs.map(f).reduce(concat, [])
+    const concat = (x, y) => x.concat(y);
+    const flatMap = (xs, f) => xs.map(f).reduce(concat, []);
 
     return [
       {
@@ -73,7 +73,7 @@ export default {
           })
         })
       ),
-      ...flatMap(Object.keys(blog), (lang, posts) => (
+      ...flatMap(Object.keys(blog), (lang, posts) =>
         [...new Set(flatMap(blog[lang], post => post.tags))].map(tag => ({
           path: `/${lang}/tags/${tag}`,
           template: "src/pages/blog",
@@ -84,7 +84,7 @@ export default {
             lang: lang
           })
         }))
-      )),
+      ),
       ...Object.keys(blog).map((lang, posts) => ({
         path: `/${lang}/blog/`,
         template: "src/pages/blog",

@@ -2,6 +2,7 @@ import './app.css';
 
 import { Link, Router } from 'components/Router';
 import Dynamic from 'containers/Dynamic';
+import Search from 'pages/search';
 import React from 'react';
 import { addPrefetchExcludes, Head, Root, Routes } from 'react-static';
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <Root>
       <Head>
-        <title>AAAAAAAA</title>
+        <title>react-static-teapot</title>
         <meta name="robots" content="noindex" />
       </Head>
       <nav>
@@ -25,6 +26,7 @@ function App() {
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
             <Dynamic path="dynamic" />
+            <Search path="*/search?q=" />
             <Routes path="*" />
           </Router>
         </React.Suspense>
