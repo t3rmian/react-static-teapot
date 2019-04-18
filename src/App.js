@@ -2,12 +2,12 @@ import './app.css';
 
 import { Link, Router } from 'components/Router';
 import Dynamic from 'containers/Dynamic';
-import Search from 'pages/search';
+import Search from 'containers/Search';
 import React from 'react';
 import { addPrefetchExcludes, Head, Root, Routes } from 'react-static';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(["dynamic"]);
+addPrefetchExcludes(["dynamic", "search", ":lang?/search"]);
 
 function App() {
   return (
@@ -26,6 +26,8 @@ function App() {
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
             <Dynamic path="dynamic" />
+            <Search path="search" />
+            <Search path=":lang/search" />
             <Routes path="*" />
           </Router>
         </React.Suspense>

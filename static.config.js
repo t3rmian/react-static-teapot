@@ -31,23 +31,6 @@ export default {
           })
         }))
       },
-      {
-        path: "/search",
-        component: "src/pages/search",
-        getData: () => ({
-          posts: blog[defaultLanguage],
-          lang: defaultLanguage,
-          isDefault: true
-        })
-      },
-      ...Object.keys(blog).map((lang, posts) => ({
-        path: `/${lang}/`,
-        template: "src/pages/search",
-        getData: () => ({
-          posts: blog[lang],
-          lang: lang
-        })
-      })),
       ...Object.keys(blog).map((lang, posts) => ({
         path: `/${lang}/`,
         template: "src/pages/index",
@@ -67,6 +50,7 @@ export default {
       ...[...new Set(flatMap(blog[defaultLanguage], post => post.tags))].map(
         tag => ({
           path: `/tags/${tag}`,
+          template: "src/containers/Tags",
           getData: () => ({
             posts: blog[defaultLanguage].filter(
               post => post.tags != null && post.tags.indexOf(tag) >= 0
@@ -79,6 +63,7 @@ export default {
       ...flatMap(Object.keys(blog), (lang, posts) =>
         [...new Set(flatMap(blog[lang], post => post.tags))].map(tag => ({
           path: `/${lang}/tags/${tag}`,
+          template: "src/containers/Tags",
           getData: () => ({
             posts: blog[lang].filter(
               post => post.tags != null && post.tags.indexOf(tag) >= 0

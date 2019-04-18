@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRouteData } from 'react-static';
 
-export default function Tags() {
+export default () => {
   const { t, i18n } = useTranslation();
   let { posts, lang, isDefault } = useRouteData();
   i18n.changeLanguage(lang);
