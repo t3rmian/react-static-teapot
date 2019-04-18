@@ -1,8 +1,8 @@
-import jdown from 'jdown';
-import path from 'path';
+import jdown from "jdown";
+import path from "path";
 
 export default {
-  siteRoot: "https://d3v.netlify.com",
+  siteRoot: "https://react-static-teapot.netlify.com",
   getSiteData: () => ({
     title: "React Static"
   }),
@@ -17,25 +17,12 @@ export default {
       {
         path: "/",
         getData: () => ({
-          home: home[defaultLanguage]
-        })
-      },
-      ...Object.keys(blog).map((lang, page) => ({
-        path: `/${lang}`,
-        template: "src/pages/index",
-        getData: () => ({
-          home: home[lang]
-        })
-      })),
-      {
-        path: "/blog",
-        getData: () => ({
           posts: blog[defaultLanguage],
           lang: defaultLanguage,
           isDefault: true
         }),
         children: blog[defaultLanguage].map(post => ({
-          path: `/post/${post.id}`,
+          path: `/posts/${post.id}`,
           template: "src/containers/Post",
           getData: () => ({
             post,
@@ -44,15 +31,32 @@ export default {
           })
         }))
       },
+      {
+        path: "/search",
+        component: "src/pages/search",
+        getData: () => ({
+          posts: blog[defaultLanguage],
+          lang: defaultLanguage,
+          isDefault: true
+        })
+      },
       ...Object.keys(blog).map((lang, posts) => ({
-        path: `/${lang}/blog/`,
-        template: "src/pages/blog",
+        path: `/${lang}/`,
+        template: "src/pages/search",
+        getData: () => ({
+          posts: blog[lang],
+          lang: lang
+        })
+      })),
+      ...Object.keys(blog).map((lang, posts) => ({
+        path: `/${lang}/`,
+        template: "src/pages/index",
         getData: () => ({
           posts: blog[lang],
           lang: lang
         }),
         children: blog[lang].map(post => ({
-          path: `/post/${post.id}`,
+          path: `/posts/${post.id}`,
           template: "src/containers/Post",
           getData: () => ({
             post,
@@ -63,7 +67,6 @@ export default {
       ...[...new Set(flatMap(blog[defaultLanguage], post => post.tags))].map(
         tag => ({
           path: `/tags/${tag}`,
-          template: "src/pages/blog",
           getData: () => ({
             posts: blog[defaultLanguage].filter(
               post => post.tags != null && post.tags.indexOf(tag) >= 0
@@ -76,7 +79,6 @@ export default {
       ...flatMap(Object.keys(blog), (lang, posts) =>
         [...new Set(flatMap(blog[lang], post => post.tags))].map(tag => ({
           path: `/${lang}/tags/${tag}`,
-          template: "src/pages/blog",
           getData: () => ({
             posts: blog[lang].filter(
               post => post.tags != null && post.tags.indexOf(tag) >= 0
@@ -84,23 +86,7 @@ export default {
             lang: lang
           })
         }))
-      ),
-      ...Object.keys(blog).map((lang, posts) => ({
-        path: `/${lang}/blog/`,
-        template: "src/pages/blog",
-        getData: () => ({
-          posts: blog[lang],
-          lang: lang
-        }),
-        children: blog[lang].map(post => ({
-          path: `/post/${post.id}`,
-          template: "src/containers/Post",
-          getData: () => ({
-            post,
-            lang: lang
-          })
-        }))
-      }))
+      )
     ];
   },
   plugins: [

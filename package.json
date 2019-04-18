@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "async-reactor": "^1.2.2",
     "axios": "^0.18.0",
     "chokidar": "^2.1.5",
     "htmr": "^0.7.0",

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRouteData } from 'react-static';
 
-export default function Blog() {
+export default function Tags() {
   const { t, i18n } = useTranslation();
   let { posts, lang, isDefault } = useRouteData();
   i18n.changeLanguage(lang);
@@ -66,8 +66,8 @@ export default function Blog() {
                   <Link
                     to={
                       isDefault
-                        ? `/blog/post/${post.id}/`
-                        : `/${lang}/blog/post/${post.id}/`
+                        ? `/posts/${post.id}/`
+                        : `/${lang}/posts/${post.id}/`
                     }
                   >
                     {post.title}

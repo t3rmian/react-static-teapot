@@ -19,14 +19,13 @@ function App() {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
+        <Link to="/search">Search</Link>
         <Link to="/dynamic">Dynamic</Link>
       </nav>
       <div className="content">
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
             <Dynamic path="dynamic" />
-            <Search path="*/search?q=" />
             <Routes path="*" />
           </Router>
         </React.Suspense>

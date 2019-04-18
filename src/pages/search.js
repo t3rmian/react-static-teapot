@@ -1,12 +1,8 @@
-import { asyncReactor } from 'async-reactor';
 import React from 'react';
-import { prefetch } from 'react-static';
+import { useRouteData } from "react-static";
+import { globalHistory } from '@reach/router'
 
-function Loader() {
-  return <b>Loading ...</b>;
-}
-
-async function Search(props) {
+export default function Search(props) {
   const count = (text, substring) => {
     var m = text.match(
       new RegExp(
@@ -16,9 +12,9 @@ async function Search(props) {
     );
     return m ? m.length : 0;
   };
-  const path = props.location.pathname;
-  let { posts, lang, isDefault } = await prefetch("/blog");
-  const query = decodeURIComponent(props.location.href.split(path)[1])
+  const path = globalHistory.location.pathname;
+  let { posts, lang, isDefault } = useRouteData();
+  const query = decodeURIComponent(globalHistory.location.href.split(path)[1])
     .replace(/[.,]/g, " ")
     .replace(/\s\s+/g, " ")
     .replace(/\?q=/g, " ");
@@ -44,7 +40,6 @@ async function Search(props) {
     })
     .filter(post => post.score > 0)
     .sort((a, b) => b.score - a.score);
-  console.log(matchingPosts);
 
   let header;
   if (words.length > 0) {
@@ -90,5 +85,3 @@ async function Search(props) {
     </div>
   );
 }
-
-export default asyncReactor(Search, Loader);
