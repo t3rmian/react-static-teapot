@@ -1,7 +1,7 @@
-import { Link } from "components/Router";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useRouteData } from "react-static";
+import { Link } from 'components/Router';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRouteData } from 'react-static';
 
 export default () => {
   const { t, i18n } = useTranslation();
@@ -30,58 +30,68 @@ export default () => {
 
   return (
     <div>
-      <h1>It's blog time.</h1>
-      <div>
-        <a href="#bottom" id="top">
-          {t("Scroll to bottom!")}
-        </a>
-      </div>
-      <br />
-      <pre>
-        {JSON.stringify(
-          groupBy(posts, post => post.fileInfo.createdAt.substring(0, 7)),
-          null,
-          "\t"
-        )}
-      </pre>
-      {t("Recent")}
-      {groupBy(posts, post =>
-        t("date=year+month", { date: new Date(post.fileInfo.createdAt) })
-      ).map(monthlyPosts => (
-        <table key={monthlyPosts[0]}>
-          <thead>
-            <tr>
-              <th>{monthlyPosts[0]}</th>
-            </tr>
-          </thead>
-          {monthlyPosts[1].map(post => (
-            <tbody key={post.id}>
+      <header style={{ display: "flex", alignItems: "center" }}>
+        <img
+          src="https://cdn.pixabay.com/photo/2016/03/31/21/05/beverage-1296175_960_720.png"
+          alt="react-static-teapot"
+          style={{ width: "20vw" }}
+        />
+        <div
+          style={{
+            float: "left",
+            verticalAlign: "bottom",
+            display: "flex",
+            alignItems: "flex-start",
+            flexDirection: "column"
+          }}
+        >
+          <h1>It's blog time.</h1>
+        </div>
+      </header>
+      <main>
+        {t("Recent")}
+        {groupBy(posts, post =>
+          t("date=year+month", { date: new Date(post.fileInfo.modifiedAt) })
+        ).map(monthlyPosts => (
+          <table key={monthlyPosts[0]}>
+            <thead>
               <tr>
-                <td>
-                  {t("date=year+month+day", {
-                    date: new Date(post.fileInfo.createdAt)
-                  })}
-                </td>
-                <td>
-                  <Link
-                    to={
-                      isDefault
-                        ? `/posts/${post.id}/`
-                        : `/${lang}/posts/${post.id}/`
-                    }
-                  >
-                    {post.title}
-                  </Link>
-                </td>
+                <th className="date-head">{monthlyPosts[0]}</th>
               </tr>
-            </tbody>
-          ))}
-        </table>
-      ))}
-      <a onClick={() => setExpanded(true)}>{t("More")}</a>
-      <a href="#top" id="bottom">
-        {t("Scroll to top!")}
-      </a>
+            </thead>
+            {monthlyPosts[1].map(post => (
+              <tbody key={post.title}>
+                <tr>
+                  <td className="date-col">
+                    {t("date=year+month+day", {
+                      date: new Date(post.fileInfo.createdAt)
+                    })}
+                  </td>
+                  <td>
+                    <Link
+                      to={
+                        isDefault
+                          ? `/posts/${post.id}/`
+                          : `/${lang}/posts/${post.id}/`
+                      }
+                    >
+                      {post.title}
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+          </table>
+        ))}
+        {!expanded && (
+          <a
+            onClick={() => setExpanded(true)}
+            style={{ textAlign: "right", float: "right" }}
+          >
+            {t("More")}
+          </a>
+        )}
+      </main>
     </div>
   );
 };

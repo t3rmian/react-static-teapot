@@ -34,4 +34,19 @@ nav a {
 
 .content {
   padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+
+.date-head {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.date-col {
+  padding-left: 2em;
+}
+
+.date-col + td {
+  padding-left: 1em;
 }
