@@ -7,7 +7,7 @@ const resources = {
       "date=year+month+day": "{{date, year+month+day}}",
       "date=year+month": "{{date, year+month}}",
       Recent: "Recent",
-      More: "More",
+      More: "More...",
       "Scroll to bottom!": "Scroll to bottom!",
       "Scroll to top!": "Scroll to top!",
       "Welcome to React": "Welcome to React and react-i18next"
@@ -16,7 +16,7 @@ const resources = {
   pl: {
     translation: {
       Recent: "Najnowsze",
-      More: "Więcej",
+      More: "Więcej...",
       "Scroll to bottom!": "Przewiń na sam dół!",
       "Scroll to top!": "Przwiń na samą górę!",
       "Welcome to React": "Welcome to React and react-i18next"
@@ -39,7 +39,7 @@ i18n.use(initReactI18next).init({
         if (format === "year+month") {
           options = { year: "numeric", month: "short" };
         } else if (format === "year+month+day") {
-          options = { year: "numeric", month: "short", day: "numeric" };
+          options = { month: "long", day: "numeric" };
         }
         return new Intl.DateTimeFormat(lng, options).format(value);
       }

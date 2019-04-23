@@ -1,7 +1,7 @@
-import { Link } from 'components/Router';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRouteData } from 'react-static';
+import { Link } from "components/Router";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useRouteData } from "react-static";
 
 export default () => {
   const { t, i18n } = useTranslation();
@@ -50,21 +50,21 @@ export default () => {
       </header>
       <main>
         {t("Recent")}
-        {groupBy(posts, post =>
-          t("date=year+month", { date: new Date(post.fileInfo.modifiedAt) })
-        ).map(monthlyPosts => (
-          <table key={monthlyPosts[0]}>
-            <thead>
+        <table>
+          {groupBy(posts, post =>
+            t("date=year+month", { date: new Date(post.fileInfo.modifiedAt) })
+          ).map(monthlyPosts => [
+            <thead key={monthlyPosts[0]}>
               <tr>
                 <th className="date-head">{monthlyPosts[0]}</th>
               </tr>
-            </thead>
-            {monthlyPosts[1].map(post => (
-              <tbody key={post.title}>
-                <tr>
+            </thead>,
+            <tbody key={monthlyPosts[0] + "-body"}>
+              {monthlyPosts[1].map(post => (
+                <tr key={post.title}>
                   <td className="date-col">
                     {t("date=year+month+day", {
-                      date: new Date(post.fileInfo.createdAt)
+                      date: new Date(post.fileInfo.modifiedAt)
                     })}
                   </td>
                   <td>
@@ -79,10 +79,10 @@ export default () => {
                     </Link>
                   </td>
                 </tr>
-              </tbody>
-            ))}
-          </table>
-        ))}
+              ))}
+            </tbody>
+          ])}
+        </table>
         {!expanded && (
           <a
             onClick={() => setExpanded(true)}
