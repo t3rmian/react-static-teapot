@@ -1,6 +1,7 @@
 import { asyncReactor } from 'async-reactor';
 import React from 'react';
 import { prefetch } from 'react-static';
+import TagCloud from "../containers/TagCloud";
 
 function Loader() {
   return <b>Loading ...</b>;
@@ -44,7 +45,6 @@ async function Search(props) {
     })
     .filter(post => post.score > 0)
     .sort((a, b) => b.score - a.score);
-  console.log(matchingPosts);
 
   let header;
   if (words.length > 0) {
@@ -87,6 +87,7 @@ async function Search(props) {
     <div>
       {header}
       {content}
+      <TagCloud isDefault={isDefault} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
     </div>
   );
 }
