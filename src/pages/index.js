@@ -2,11 +2,12 @@ import { Link } from "components/Router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteData } from "react-static";
+import LangSwitcher from "../containers/LangSwitcher";
 import TagCloud from "../containers/TagCloud";
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { posts, lang, isDefault } = useRouteData();
+  let { posts, lang, isDefault, langRefs } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -31,6 +32,7 @@ export default () => {
 
   return (
     <div>
+      <LangSwitcher langRefs={langRefs} />
       <header style={{ display: "flex", alignItems: "center" }}>
         <img
           src="https://cdn.pixabay.com/photo/2016/03/31/21/05/beverage-1296175_960_720.png"
@@ -92,7 +94,16 @@ export default () => {
             {t("More")}
           </a>
         )}
-        <TagCloud isDefault={isDefault} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
+        <TagCloud
+          isDefault={isDefault}
+          lang={lang}
+          tags={[
+            { value: "tag1", hits: 2 },
+            { value: "tag2", hits: 2 },
+            { value: "tag3", hits: 1 },
+            { value: "tag4", hits: 10 }
+          ]}
+        />
       </main>
     </div>
   );

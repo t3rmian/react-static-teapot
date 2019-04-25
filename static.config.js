@@ -12,14 +12,22 @@ export default {
     const home = await jdown("content/home", { fileInfo: true });
     const concat = (x, y) => x.concat(y);
     const flatMap = (xs, f) => xs.map(f).reduce(concat, []);
-
     return [
       {
         path: "/",
         getData: () => ({
           posts: blog[defaultLanguage],
           lang: defaultLanguage,
-          isDefault: true
+          isDefault: true,
+          langRefs: [
+            ...Object.keys(blog)
+            .filter((lang) => lang !== defaultLanguage)
+            .map((lang) => ({
+              lang,
+              url: `/${lang}`
+            })),
+            { lang: defaultLanguage, url: "/" }
+          ]
         }),
         children: blog[defaultLanguage].map(post => ({
           path: `/posts/${post.id}`,
@@ -27,23 +35,52 @@ export default {
           getData: () => ({
             post,
             lang: defaultLanguage,
-            isDefault: true
+            isDefault: true,
+            langRefs: [
+              ...Object.keys(blog)
+              .filter((lang) => lang !== defaultLanguage )
+              .filter((lang) => blog[lang].some(p => p.id === post.id))
+                .map((lang) => ({
+                  lang,
+                  url: `${lang}/posts/${post.id}`
+                })),
+              ...(blog[defaultLanguage].some(p=>p.id === post.id) ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }] : [])
+            ]
           })
         }))
       },
-      ...Object.keys(blog).map((lang, posts) => ({
+      ...Object.keys(blog).map((lang) => ({
         path: `/${lang}/`,
         template: "src/pages/index",
         getData: () => ({
           posts: blog[lang],
-          lang: lang
+          lang: lang,
+          langRefs: [
+            ...Object.keys(blog)
+            .filter((lang) => lang !== defaultLanguage)
+            .map((lang) => ({
+              lang,
+              url: `/${lang}`
+            })),
+            { lang: defaultLanguage, url: "/" }
+          ]
         }),
         children: blog[lang].map(post => ({
           path: `/posts/${post.id}`,
           template: "src/containers/Post",
           getData: () => ({
             post,
-            lang: lang
+            lang: lang,
+            langRefs: [
+              ...Object.keys(blog)
+              .filter((lang) => lang !== defaultLanguage )
+              .filter((lang) => blog[lang].some(p => p.id === post.id))
+                .map((lang) => ({
+                  lang,
+                  url: `${lang}/posts/${post.id}`
+                })),
+              ...(blog[defaultLanguage].some(p=>p.id === post.id) ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }] : [])
+            ]
           })
         }))
       })),
@@ -56,7 +93,17 @@ export default {
               post => post.tags != null && post.tags.indexOf(tag) >= 0
             ),
             lang: defaultLanguage,
-            isDefault: true
+            isDefault: true,
+            langRefs: [
+              ...Object.keys(blog)
+              .filter((lang) => lang !== defaultLanguage )
+              .filter((lang) => blog[lang].some(p => p.tags != null ? p.tags.some(t => t === tag): false))
+                .map((lang) => ({
+                  lang,
+                  url: `${lang}/tags/${tag}`
+                })),
+              ...(blog[defaultLanguage].some(p => p.tags != null ? p.tags.some(t => t === tag): false) ? [{ lang: defaultLanguage, url: `/tags/${tag}` }] : [])
+            ]
           })
         })
       ),
@@ -68,7 +115,17 @@ export default {
             posts: blog[lang].filter(
               post => post.tags != null && post.tags.indexOf(tag) >= 0
             ),
-            lang: lang
+            lang: lang,
+            langRefs: [
+              ...Object.keys(blog)
+              .filter((lang) => lang !== defaultLanguage )
+              .filter((lang) => blog[lang].some(p => p.tags != null ? p.tags.some(t => t === tag): false))
+                .map((lang) => ({
+                  lang,
+                  url: `${lang}/tags/${tag}`
+                })),
+              ...(blog[defaultLanguage].some(p => p.tags != null ? p.tags.some(t => t === tag): false) ? [{ lang: defaultLanguage, url: `/tags/${tag}` }] : [])
+            ]
           })
         }))
       )

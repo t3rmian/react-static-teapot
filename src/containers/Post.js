@@ -2,11 +2,13 @@ import React from 'react'
 import { useRouteData } from 'react-static'
 import TagCloud from "../containers/TagCloud";
 import { Link } from 'components/Router'
+import LangSwitcher from "../containers/LangSwitcher";
 
 export default function Post() {
-  const { post, isDefault, lang } = useRouteData()
+  const { post, isDefault, lang, langRefs } = useRouteData()
   return (
     <div>
+      <LangSwitcher langRefs={langRefs} />
       <Link to="/">{'<'} Back</Link>
       <br />
       <h3>{post.title}</h3>

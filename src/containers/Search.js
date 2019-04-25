@@ -1,7 +1,9 @@
 import { asyncReactor } from 'async-reactor';
 import React from 'react';
 import { prefetch } from 'react-static';
-import TagCloud from "../containers/TagCloud";
+
+import LangSwitcher from '../containers/LangSwitcher';
+import TagCloud from '../containers/TagCloud';
 
 function Loader() {
   return <b>Loading ...</b>;
@@ -18,8 +20,17 @@ async function Search(props) {
     return m ? m.length : 0;
   };
   const path = props.location.pathname;
-  let { posts, lang, isDefault } = await prefetch(props.lang == null ? '/' : '/' + props.lang);
-  const query = decodeURIComponent(props.location.href.split(path)[1])
+  let { posts, lang, isDefault, langRefs } = await prefetch(
+    props.lang == null ? "/" : "/" + props.lang
+  );
+  const urlAndQuery = props.location.href.split(path);
+  langRefs.forEach(
+    e =>
+      (e.url =
+        (e.url.endsWith("/") ? `${e.url}search` : `${e.url}/search`) +
+        urlAndQuery[1])
+  );
+  const query = decodeURIComponent(urlAndQuery[1])
     .replace(/[.,]/g, " ")
     .replace(/\s\s+/g, " ")
     .replace(/\?q=/g, " ");
@@ -85,9 +96,19 @@ async function Search(props) {
   }
   return (
     <div>
+      <LangSwitcher langRefs={langRefs} />
       {header}
       {content}
-      <TagCloud isDefault={isDefault} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
+      <TagCloud
+        isDefault={isDefault}
+        lang={lang}
+        tags={[
+          { value: "tag1", hits: 2 },
+          { value: "tag2", hits: 2 },
+          { value: "tag3", hits: 1 },
+          { value: "tag4", hits: 10 }
+        ]}
+      />
     </div>
   );
 }

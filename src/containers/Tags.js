@@ -2,11 +2,13 @@ import { Link } from 'components/Router';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRouteData } from 'react-static';
-import TagCloud from "../containers/TagCloud";
+
+import LangSwitcher from '../containers/LangSwitcher';
+import TagCloud from '../containers/TagCloud';
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { posts, lang, isDefault } = useRouteData();
+  let { posts, lang, isDefault, langRefs } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -31,6 +33,7 @@ export default () => {
 
   return (
     <div>
+      <LangSwitcher langRefs={langRefs} />
       <h1>It's blog time.</h1>
       <div>
         <a href="#bottom" id="top">
@@ -45,7 +48,7 @@ export default () => {
           "\t"
         )}
       </pre>
-      {t('Recent')}
+      {t("Recent")}
       {groupBy(posts, post =>
         t("date=year+month", { date: new Date(post.fileInfo.createdAt) })
       ).map(monthlyPosts => (
@@ -83,7 +86,16 @@ export default () => {
       <a href="#top" id="bottom">
         {t("Scroll to top!")}
       </a>
-      <TagCloud isDefault={isDefault} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
+      <TagCloud
+        isDefault={isDefault}
+        lang={lang}
+        tags={[
+          { value: "tag1", hits: 2 },
+          { value: "tag2", hits: 2 },
+          { value: "tag3", hits: 1 },
+          { value: "tag4", hits: 10 }
+        ]}
+      />
     </div>
   );
-}
+};
