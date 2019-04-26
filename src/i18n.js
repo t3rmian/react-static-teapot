@@ -7,6 +7,7 @@ const resources = {
       "date=year+month+day": "{{date, year+month+day}}",
       "date=year+month": "{{date, year+month}}",
       Recent: "Recent",
+      Tags: "Posts by tag",
       More: "More...",
       "Scroll to bottom!": "Scroll to bottom!",
       "Scroll to top!": "Scroll to top!",
@@ -16,6 +17,7 @@ const resources = {
   pl: {
     translation: {
       Recent: "Najnowsze",
+      Tags: "Artykuły według etykiety",
       More: "Więcej...",
       "Scroll to bottom!": "Przewiń na sam dół!",
       "Scroll to top!": "Przwiń na samą górę!",

@@ -1,5 +1,6 @@
 import jdown from "jdown";
 import path from "path";
+import { flatMap } from './src/utils.js';
 
 export default {
   siteRoot: "https://react-static-teapot.netlify.com",
@@ -10,22 +11,28 @@ export default {
     const defaultLanguage = "en";
     const blog = await jdown("content/posts", { fileInfo: true });
     const home = await jdown("content/home", { fileInfo: true });
-    const concat = (x, y) => x.concat(y);
-    const flatMap = (xs, f) => xs.map(f).reduce(concat, []);
+    Object.keys(blog).forEach(lang =>
+      blog[lang].sort(function(a, b) {
+        return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
+      })
+    );
     return [
       {
         path: "/",
         getData: () => ({
-          posts: blog[defaultLanguage],
+          posts: blog[defaultLanguage].map(p => ({
+            ...p,
+            path: `/posts/${p.id}`
+          })),
           lang: defaultLanguage,
           isDefault: true,
           langRefs: [
             ...Object.keys(blog)
-            .filter((lang) => lang !== defaultLanguage)
-            .map((lang) => ({
-              lang,
-              url: `/${lang}`
-            })),
+              .filter(lang => lang !== defaultLanguage)
+              .map(lang => ({
+                lang,
+                url: `/${lang}`
+              })),
             { lang: defaultLanguage, url: "/" }
           ]
         }),
@@ -38,30 +45,35 @@ export default {
             isDefault: true,
             langRefs: [
               ...Object.keys(blog)
-              .filter((lang) => lang !== defaultLanguage )
-              .filter((lang) => blog[lang].some(p => p.id === post.id))
-                .map((lang) => ({
+                .filter(lang => lang !== defaultLanguage)
+                .filter(lang => blog[lang].some(p => p.id === post.id))
+                .map(lang => ({
                   lang,
                   url: `${lang}/posts/${post.id}`
                 })),
-              ...(blog[defaultLanguage].some(p=>p.id === post.id) ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }] : [])
+              ...(blog[defaultLanguage].some(p => p.id === post.id)
+                ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }]
+                : [])
             ]
           })
         }))
       },
-      ...Object.keys(blog).map((lang) => ({
+      ...Object.keys(blog).map(lang => ({
         path: `/${lang}/`,
         template: "src/pages/index",
         getData: () => ({
-          posts: blog[lang],
+          posts: blog[lang].map(p => ({
+            ...p,
+            path: `/${lang}/posts/${p.id}`
+          })),
           lang: lang,
           langRefs: [
             ...Object.keys(blog)
-            .filter((lang) => lang !== defaultLanguage)
-            .map((lang) => ({
-              lang,
-              url: `/${lang}`
-            })),
+              .filter(lang => lang !== defaultLanguage)
+              .map(lang => ({
+                lang,
+                url: `/${lang}`
+              })),
             { lang: defaultLanguage, url: "/" }
           ]
         }),
@@ -73,13 +85,15 @@ export default {
             lang: lang,
             langRefs: [
               ...Object.keys(blog)
-              .filter((lang) => lang !== defaultLanguage )
-              .filter((lang) => blog[lang].some(p => p.id === post.id))
-                .map((lang) => ({
+                .filter(lang => lang !== defaultLanguage)
+                .filter(lang => blog[lang].some(p => p.id === post.id))
+                .map(lang => ({
                   lang,
                   url: `${lang}/posts/${post.id}`
                 })),
-              ...(blog[defaultLanguage].some(p=>p.id === post.id) ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }] : [])
+              ...(blog[defaultLanguage].some(p => p.id === post.id)
+                ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }]
+                : [])
             ]
           })
         }))
@@ -89,20 +103,31 @@ export default {
           path: `/tags/${tag}`,
           template: "src/containers/Tags",
           getData: () => ({
-            posts: blog[defaultLanguage].filter(
-              post => post.tags != null && post.tags.indexOf(tag) >= 0
-            ),
+            posts: blog[defaultLanguage]
+              .filter(post => post.tags != null && post.tags.indexOf(tag) >= 0)
+              .map(p => ({
+                ...p,
+                path: `/posts/${p.id}`
+              })),
             lang: defaultLanguage,
             isDefault: true,
             langRefs: [
               ...Object.keys(blog)
-              .filter((lang) => lang !== defaultLanguage )
-              .filter((lang) => blog[lang].some(p => p.tags != null ? p.tags.some(t => t === tag): false))
-                .map((lang) => ({
+                .filter(lang => lang !== defaultLanguage)
+                .filter(lang =>
+                  blog[lang].some(p =>
+                    p.tags != null ? p.tags.some(t => t === tag) : false
+                  )
+                )
+                .map(lang => ({
                   lang,
                   url: `${lang}/tags/${tag}`
                 })),
-              ...(blog[defaultLanguage].some(p => p.tags != null ? p.tags.some(t => t === tag): false) ? [{ lang: defaultLanguage, url: `/tags/${tag}` }] : [])
+              ...(blog[defaultLanguage].some(p =>
+                p.tags != null ? p.tags.some(t => t === tag) : false
+              )
+                ? [{ lang: defaultLanguage, url: `/tags/${tag}` }]
+                : [])
             ]
           })
         })
@@ -112,19 +137,30 @@ export default {
           path: `/${lang}/tags/${tag}`,
           template: "src/containers/Tags",
           getData: () => ({
-            posts: blog[lang].filter(
-              post => post.tags != null && post.tags.indexOf(tag) >= 0
-            ),
+            posts: blog[lang]
+              .filter(post => post.tags != null && post.tags.indexOf(tag) >= 0)
+              .map(p => ({
+                ...p,
+                path: `/${lang}/posts/${p.id}`
+              })),
             lang: lang,
             langRefs: [
               ...Object.keys(blog)
-              .filter((lang) => lang !== defaultLanguage )
-              .filter((lang) => blog[lang].some(p => p.tags != null ? p.tags.some(t => t === tag): false))
-                .map((lang) => ({
+                .filter(lang => lang !== defaultLanguage)
+                .filter(lang =>
+                  blog[lang].some(p =>
+                    p.tags != null ? p.tags.some(t => t === tag) : false
+                  )
+                )
+                .map(lang => ({
                   lang,
                   url: `${lang}/tags/${tag}`
                 })),
-              ...(blog[defaultLanguage].some(p => p.tags != null ? p.tags.some(t => t === tag): false) ? [{ lang: defaultLanguage, url: `/tags/${tag}` }] : [])
+              ...(blog[defaultLanguage].some(p =>
+                p.tags != null ? p.tags.some(t => t === tag) : false
+              )
+                ? [{ lang: defaultLanguage, url: `/tags/${tag}` }]
+                : [])
             ]
           })
         }))
