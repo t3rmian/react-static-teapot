@@ -9,9 +9,9 @@ const resources = {
       Recent: "Recent",
       Tags: "Posts by tag",
       More: "More...",
-      "Scroll to bottom!": "Scroll to bottom!",
-      "Scroll to top!": "Scroll to top!",
-      "Welcome to React": "Welcome to React and react-i18next"
+      "Search results": "Search results for any of the following query parts:",
+      "Empty query": "Oops, empty query...",
+      "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it."
     }
   },
   pl: {
@@ -19,9 +19,9 @@ const resources = {
       Recent: "Najnowsze",
       Tags: "Artykuły według etykiety",
       More: "Więcej...",
-      "Scroll to bottom!": "Przewiń na sam dół!",
-      "Scroll to top!": "Przwiń na samą górę!",
-      "Welcome to React": "Welcome to React and react-i18next"
+      "Search results": "Rezultaty wyszukiwania dla następujących części zapytania:",
+      "Empty query": "Ups, puste zapytanie...",
+      "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy."
     }
   }
 };

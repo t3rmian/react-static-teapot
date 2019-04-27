@@ -14,3 +14,13 @@ export function groupBy(list, keyGetter) {
 
 export const concat = (x, y) => x.concat(y);
 export const flatMap = (xs, f) => xs.map(f).reduce(concat, []);
+
+export function countSubstrings(text, substring) {
+  var m = text.match(
+    new RegExp(
+      substring.toString().replace(/(?=[.\\+*?[^\]$(){}\|])/g, "\\"),
+      "g"
+    )
+  );
+  return m ? m.length : 0;
+}
