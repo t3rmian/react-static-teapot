@@ -8,7 +8,7 @@ import PostList from './PostList';
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { posts, lang, isDefault, langRefs } = useRouteData();
+  let { posts, lang, isDefaultLang, langRefs } = useRouteData();
   i18n.changeLanguage(lang);
 
   return (
@@ -17,7 +17,7 @@ export default () => {
       <h1>{t("Tags")}</h1>
       <PostList posts={posts} />
       <TagCloud
-        isDefault={isDefault}
+        isDefaultLang={isDefaultLang}
         lang={lang}
         tags={[
           { value: "tag1", hits: 2 },

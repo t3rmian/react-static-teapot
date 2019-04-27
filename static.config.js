@@ -1,7 +1,8 @@
-import jdown from "jdown";
-import path from "path";
-import { flatMap } from './src/utils.js';
+import jdown from 'jdown';
+import path from 'path';
+
 import I18nIndexes from './src/model/I18nIndexes';
+import I18nTags from './src/model/I18nTags';
 
 export default {
   siteRoot: "https://react-static-teapot.netlify.com",
@@ -17,75 +18,10 @@ export default {
         return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
       })
     );
+    console.log(...I18nTags(blog, defaultLanguage));
     return [
       ...I18nIndexes(blog, defaultLanguage),
-      ...[...new Set(flatMap(blog[defaultLanguage], post => post.tags))].map(
-        tag => ({
-          path: `/tags/${tag}`,
-          template: "src/containers/Tags",
-          getData: () => ({
-            posts: blog[defaultLanguage]
-              .filter(post => post.tags != null && post.tags.indexOf(tag) >= 0)
-              .map(p => ({
-                ...p,
-                path: `/posts/${p.id}`
-              })),
-            lang: defaultLanguage,
-            isDefault: true,
-            langRefs: [
-              ...Object.keys(blog)
-                .filter(lang => lang !== defaultLanguage)
-                .filter(lang =>
-                  blog[lang].some(p =>
-                    p.tags != null ? p.tags.some(t => t === tag) : false
-                  )
-                )
-                .map(lang => ({
-                  lang,
-                  url: `${lang}/tags/${tag}`
-                })),
-              ...(blog[defaultLanguage].some(p =>
-                p.tags != null ? p.tags.some(t => t === tag) : false
-              )
-                ? [{ lang: defaultLanguage, url: `/tags/${tag}` }]
-                : [])
-            ]
-          })
-        })
-      ),
-      ...flatMap(Object.keys(blog), (lang, posts) =>
-        [...new Set(flatMap(blog[lang], post => post.tags))].map(tag => ({
-          path: `/${lang}/tags/${tag}`,
-          template: "src/containers/Tags",
-          getData: () => ({
-            posts: blog[lang]
-              .filter(post => post.tags != null && post.tags.indexOf(tag) >= 0)
-              .map(p => ({
-                ...p,
-                path: `/${lang}/posts/${p.id}`
-              })),
-            lang: lang,
-            langRefs: [
-              ...Object.keys(blog)
-                .filter(lang => lang !== defaultLanguage)
-                .filter(lang =>
-                  blog[lang].some(p =>
-                    p.tags != null ? p.tags.some(t => t === tag) : false
-                  )
-                )
-                .map(lang => ({
-                  lang,
-                  url: `${lang}/tags/${tag}`
-                })),
-              ...(blog[defaultLanguage].some(p =>
-                p.tags != null ? p.tags.some(t => t === tag) : false
-              )
-                ? [{ lang: defaultLanguage, url: `/tags/${tag}` }]
-                : [])
-            ]
-          })
-        }))
-      )
+      ...I18nTags(blog, defaultLanguage)
     ];
   },
   plugins: [
