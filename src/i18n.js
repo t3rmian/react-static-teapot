@@ -11,7 +11,10 @@ const resources = {
       More: "More...",
       "Search results": "Search results for any of the following query parts: {{parts}}",
       "Empty query": "Oops, empty query...",
-      "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it."
+      "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it.",
+      posts: "posts",
+      tags: "tags",
+      search: "search"
     }
   },
   pl: {
@@ -21,7 +24,10 @@ const resources = {
       More: "Więcej...",
       "Search results": "Rezultaty wyszukiwania dla następujących części zapytania: {{parts}}",
       "Empty query": "Ups, puste zapytanie...",
-      "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy."
+      "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy.",
+      posts: "posty",
+      tags: "tagi",
+      search: "szukaj"
     }
   }
 };

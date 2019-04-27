@@ -65,8 +65,8 @@ async function AsyncSearch(props) {
       ...langRef,
       url:
         (langRef.url.endsWith("/")
-          ? `${langRef.url}search`
-          : `${langRef.url}/search`) + query
+          ? `${langRef.url}${i18n.t("search", { lng: langRef.lang })}`
+          : `${langRef.url}/${i18n.t("search", { lng: langRef.lang })}`) + query
     };
   }
 
@@ -96,7 +96,6 @@ export class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { component: Loader() };
-    console.log(props);
   }
 
   componentDidMount() {

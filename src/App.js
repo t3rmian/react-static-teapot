@@ -6,10 +6,17 @@ import Search from 'containers/Search';
 import React from 'react';
 import { addPrefetchExcludes, Head, Root, Routes } from 'react-static';
 
-// Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(["dynamic", "search", ":lang?/search"]);
+import i18n from './i18n';
+
+const langs = Object.keys(i18n.services.resourceStore.data);
+addPrefetchExcludes([
+  "dynamic",
+  `${i18n.t("search", { lng: i18n.t("defaultLang") })}`,
+  ...langs.map(lang => `:lang/${i18n.t("search", { lng: lang })}`)
+]);
 
 function App() {
+  console.log(langs);
   return (
     <Root>
       <Head>
@@ -26,8 +33,15 @@ function App() {
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
             <Dynamic path="dynamic" />
-            <Search path="search" />
-            <Search path=":lang/search" />
+            <Search
+              path={`${i18n.t("search", { lng: i18n.t("defaultLang") })}`}
+            />
+            {langs.map(lang => (
+              <Search
+                key={lang}
+                path={`:lang/${i18n.t("search", { lng: lang })}`}
+              />
+            ))}
             <Routes path="*" />
           </Router>
         </React.Suspense>

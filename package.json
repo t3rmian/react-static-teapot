@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "async-reactor": "^1.2.2",
     "axios": "^0.18.0",
-    "chokidar": "^2.1.5",
     "htmr": "^0.7.0",
     "i18next": "^15.0.9",
     "jdown": "^1.0.1",

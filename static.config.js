@@ -18,7 +18,6 @@ export default {
         return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
       })
     );
-    console.log(...I18nTags(blog, defaultLanguage));
     return [
       ...I18nIndexes(blog, defaultLanguage),
       ...I18nTags(blog, defaultLanguage)

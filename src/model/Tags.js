@@ -1,10 +1,15 @@
+import i18n from '../i18n';
 import { flatMap } from '../utils';
 import { gradeTags } from './Index';
 
 export default function Tags(blog, defaultLang, lang) {
   const isDefaultLang = defaultLang === lang;
-  const path = isDefaultLang ? "/tags/" : `/${lang}/tags/`;
-  const postPath = isDefaultLang ? "/posts/" : `/${lang}/posts/`;
+  const path = isDefaultLang
+    ? `/${i18n.t("tags")}/`
+    : `/${lang}/${i18n.t("tags")}/`;
+  const postPath = isDefaultLang
+    ? `/${i18n.t("posts")}/`
+    : `/${lang}/${i18n.t("posts")}/`;
   const tags = [...new Set(flatMap(blog[lang], post => post.tags))];
   const pageTags = gradeTags(blog[lang]);
 
@@ -30,12 +35,17 @@ export default function Tags(blog, defaultLang, lang) {
           )
           .map(lang => ({
             lang,
-            url: `${lang}/tags/${tag}`
+            url: `${lang}/${i18n.t("tags", lang)}/${tag}`
           })),
         ...(blog[defaultLang].some(p =>
           p.tags != null ? p.tags.some(t => t === tag) : false
         )
-          ? [{ lang: defaultLang, url: `/tags/${tag}` }]
+          ? [
+              {
+                lang: defaultLang,
+                url: `/${i18n.t("tags", { lng: defaultLang })}/${tag}`
+              }
+            ]
           : [])
       ],
       tag,
