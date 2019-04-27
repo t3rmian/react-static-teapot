@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
+      defaultLang: "en",
       "date=year+month+day": "{{date, year+month+day}}",
       "date=year+month": "{{date, year+month}}",
       Recent: "Recent",

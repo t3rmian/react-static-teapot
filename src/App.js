@@ -16,7 +16,6 @@ addPrefetchExcludes([
 ]);
 
 function App() {
-  console.log(langs);
   return (
     <Root>
       <Head>

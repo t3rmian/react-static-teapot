@@ -1,6 +1,7 @@
 ---
 title: Pierwszy artykuł
-lang: en
+url: pierwszy-artykuł
+lang: pl
 id: 1
 tags:
   - tag1
