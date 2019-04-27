@@ -9,7 +9,7 @@ import TagCloud from "../containers/TagCloud";
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { posts, lang, isDefault, langRefs } = useRouteData();
+  let { posts, lang, isDefaultLang, langRefs } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -35,7 +35,7 @@ export default () => {
           </a>
         )}
         <TagCloud
-          isDefault={isDefault}
+          isDefaultLang={isDefaultLang}
           lang={lang}
           tags={[
             { value: "tag1", hits: 2 },

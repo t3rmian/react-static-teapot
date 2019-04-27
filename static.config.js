@@ -1,6 +1,7 @@
 import jdown from "jdown";
 import path from "path";
 import { flatMap } from './src/utils.js';
+import I18nIndexes from './src/model/I18nIndexes';
 
 export default {
   siteRoot: "https://react-static-teapot.netlify.com",
@@ -17,87 +18,7 @@ export default {
       })
     );
     return [
-      {
-        path: "/",
-        getData: () => ({
-          posts: blog[defaultLanguage].map(p => ({
-            ...p,
-            path: `/posts/${p.id}`
-          })),
-          lang: defaultLanguage,
-          isDefault: true,
-          langRefs: [
-            ...Object.keys(blog)
-              .filter(lang => lang !== defaultLanguage)
-              .map(lang => ({
-                lang,
-                url: `/${lang}`
-              })),
-            { lang: defaultLanguage, url: "/" }
-          ]
-        }),
-        children: blog[defaultLanguage].map(post => ({
-          path: `/posts/${post.id}`,
-          template: "src/containers/Post",
-          getData: () => ({
-            post,
-            lang: defaultLanguage,
-            isDefault: true,
-            langRefs: [
-              ...Object.keys(blog)
-                .filter(lang => lang !== defaultLanguage)
-                .filter(lang => blog[lang].some(p => p.id === post.id))
-                .map(lang => ({
-                  lang,
-                  url: `${lang}/posts/${post.id}`
-                })),
-              ...(blog[defaultLanguage].some(p => p.id === post.id)
-                ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }]
-                : [])
-            ]
-          })
-        }))
-      },
-      ...Object.keys(blog).map(lang => ({
-        path: `/${lang}/`,
-        template: "src/pages/index",
-        getData: () => ({
-          posts: blog[lang].map(p => ({
-            ...p,
-            path: `/${lang}/posts/${p.id}`
-          })),
-          lang: lang,
-          langRefs: [
-            ...Object.keys(blog)
-              .filter(lang => lang !== defaultLanguage)
-              .map(lang => ({
-                lang,
-                url: `/${lang}`
-              })),
-            { lang: defaultLanguage, url: "/" }
-          ]
-        }),
-        children: blog[lang].map(post => ({
-          path: `/posts/${post.id}`,
-          template: "src/containers/Post",
-          getData: () => ({
-            post,
-            lang: lang,
-            langRefs: [
-              ...Object.keys(blog)
-                .filter(lang => lang !== defaultLanguage)
-                .filter(lang => blog[lang].some(p => p.id === post.id))
-                .map(lang => ({
-                  lang,
-                  url: `${lang}/posts/${post.id}`
-                })),
-              ...(blog[defaultLanguage].some(p => p.id === post.id)
-                ? [{ lang: defaultLanguage, url: `/posts/${post.id}` }]
-                : [])
-            ]
-          })
-        }))
-      })),
+      ...I18nIndexes(blog, defaultLanguage),
       ...[...new Set(flatMap(blog[defaultLanguage], post => post.tags))].map(
         tag => ({
           path: `/tags/${tag}`,

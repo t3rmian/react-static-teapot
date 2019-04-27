@@ -5,7 +5,7 @@ import { Link } from 'components/Router'
 import LangSwitcher from "../containers/LangSwitcher";
 
 export default function Post() {
-  const { post, isDefault, lang, langRefs } = useRouteData()
+  const { post, isDefaultLang, lang, langRefs } = useRouteData()
   return (
     <div>
       <LangSwitcher langRefs={langRefs} />
@@ -13,7 +13,7 @@ export default function Post() {
       <br />
       <h3>{post.title}</h3>
       <p>{post.body}</p>
-      <TagCloud isDefault={isDefault} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
+      <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
     </div>
   )
 }

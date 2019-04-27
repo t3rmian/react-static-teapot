@@ -4,7 +4,7 @@ import React from 'react';
 import { flatMap, groupBy } from '../utils.js';
 
 export default function TagCloud(props) {
-  const { tags, isDefault, lang } = props;
+  const { tags, isDefaultLang, lang } = props;
   const maxHits = tags.reduce((a, b) => Math.max(a, b.hits), tags[0].hits);
   const minHits = tags.reduce((a, b) => Math.min(a, b.hits), tags[0].hits);
   const diff = maxHits - minHits;
@@ -31,7 +31,7 @@ export default function TagCloud(props) {
             <Link
               key={tag.value}
               to={
-                isDefault
+                isDefaultLang
                   ? `/tags/${tag.value}/`
                   : `/${lang}/tags/${tag.value}/`
               }
