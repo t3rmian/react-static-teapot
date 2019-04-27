@@ -1,6 +1,5 @@
 ---
-title: Title
+title: react-static-teapot
 lang: en
-id: home
 ---
-AAAAAAAAA
+It's blog time

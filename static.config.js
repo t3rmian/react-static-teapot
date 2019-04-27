@@ -19,7 +19,7 @@ export default {
       })
     );
     return [
-      ...I18nIndexes(blog, defaultLanguage),
+      ...I18nIndexes(blog, defaultLanguage, home),
       ...I18nTags(blog, defaultLanguage)
     ];
   },

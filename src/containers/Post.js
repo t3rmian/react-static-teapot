@@ -1,4 +1,5 @@
 import { Link } from 'components/Router';
+import convert from 'htmr';
 import React from 'react';
 import { useRouteData } from 'react-static';
 
@@ -13,7 +14,7 @@ export default function Post() {
       <Link to="/">{"<"} Back</Link>
       <br />
       <h3>{post.title}</h3>
-      <p>{post.body}</p>
+      {convert(post.contents)}
       <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
     </div>
   );

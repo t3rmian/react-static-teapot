@@ -1,5 +1,5 @@
-import Posts from "../model/Posts";
-import i18n from "../i18n";
+import i18n from '../i18n';
+import Posts from '../model/Posts';
 
 export function gradeTags(posts) {
   const tags = [];
@@ -18,7 +18,8 @@ export function gradeTags(posts) {
   return tags;
 }
 
-export default function Index(blog, defaultLang, lang) {
+export default function Index(content, defaultLang, lang) {
+  const { blog, home } = content;
   const isDefaultLang = defaultLang === lang;
   const path = isDefaultLang ? "/" : `/${lang}/`;
   const tags = gradeTags(blog[lang]);
@@ -27,6 +28,7 @@ export default function Index(blog, defaultLang, lang) {
     path,
     template: "src/pages/index",
     getData: () => ({
+      home: home[lang][0],
       posts: blog[lang].map(p => ({
         ...p,
         path: `${path}${i18n.t("posts", { lng: lang })}/${p.url}`
