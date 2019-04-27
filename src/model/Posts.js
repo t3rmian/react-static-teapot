@@ -1,4 +1,4 @@
-export default function Posts(blog, defaultLang, lang) {
+export default function Posts(blog, defaultLang, lang, tags) {
   const isDefaultLang = defaultLang === lang
 
   return blog[lang].map(post => ({
@@ -19,7 +19,8 @@ export default function Posts(blog, defaultLang, lang) {
         ...(blog[defaultLang].some(p => p.id === post.id)
           ? [{ lang: defaultLang, url: `/posts/${post.id}` }]
           : [])
-      ]
+      ],
+      tags
     })
   }));
 }

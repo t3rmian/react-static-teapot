@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { prefetch } from 'react-static';
+import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
+import { prefetch } from "react-static";
 
-import LangSwitcher from '../containers/LangSwitcher';
-import TagCloud from '../containers/TagCloud';
-import { countSubstrings } from '../utils.js';
-import PostList from './PostList';
+import LangSwitcher from "../containers/LangSwitcher";
+import TagCloud from "../containers/TagCloud";
+import { countSubstrings } from "../utils.js";
+import PostList from "./PostList";
 
 function Loader() {
   return <b>Loading ...</b>;
@@ -14,7 +14,7 @@ function Loader() {
 async function AsyncSearch(props) {
   const path = props.location.pathname;
   const { t, i18n } = props;
-  let { posts, lang, isDefaultLang, langRefs } = await prefetch(
+  let { posts, lang, isDefaultLang, langRefs, tags } = await prefetch(
     props.lang == null ? "/" : "/" + props.lang
   );
   i18n.changeLanguage(lang);
@@ -36,8 +36,9 @@ async function AsyncSearch(props) {
   if (words.length > 0) {
     header = (
       <div>
-        {t("Search results")}
-        {" " + words.map(word => '"' + word + '"').join(", ")}
+        {t("Search results", {
+          parts: " " + words.map(word => '"' + word + '"').join(", ")
+        })}
       </div>
     );
   } else {
@@ -55,16 +56,7 @@ async function AsyncSearch(props) {
       <LangSwitcher langRefs={langRefs} />
       {header}
       {content}
-      <TagCloud
-        isDefaultLang={isDefaultLang}
-        lang={lang}
-        tags={[
-          { value: "tag1", hits: 2 },
-          { value: "tag2", hits: 2 },
-          { value: "tag3", hits: 1 },
-          { value: "tag4", hits: 10 }
-        ]}
-      />
+      <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
     </div>
   );
 

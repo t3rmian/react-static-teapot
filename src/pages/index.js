@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useRouteData } from "react-static";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRouteData } from 'react-static';
 
-import Header from "../containers/Header";
-import LangSwitcher from "../containers/LangSwitcher";
-import PostList from "../containers/PostList";
-import TagCloud from "../containers/TagCloud";
+import Header from '../containers/Header';
+import LangSwitcher from '../containers/LangSwitcher';
+import PostList from '../containers/PostList';
+import TagCloud from '../containers/TagCloud';
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { posts, lang, isDefaultLang, langRefs } = useRouteData();
+  let { posts, lang, isDefaultLang, langRefs, tags } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -34,16 +34,7 @@ export default () => {
             {t("More")}
           </a>
         )}
-        <TagCloud
-          isDefaultLang={isDefaultLang}
-          lang={lang}
-          tags={[
-            { value: "tag1", hits: 2 },
-            { value: "tag2", hits: 2 },
-            { value: "tag3", hits: 1 },
-            { value: "tag4", hits: 10 }
-          ]}
-        />
+        <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </main>
     </div>
   );

@@ -1,19 +1,20 @@
-import React from 'react'
-import { useRouteData } from 'react-static'
-import TagCloud from "../containers/TagCloud";
-import { Link } from 'components/Router'
-import LangSwitcher from "../containers/LangSwitcher";
+import { Link } from 'components/Router';
+import React from 'react';
+import { useRouteData } from 'react-static';
+
+import LangSwitcher from '../containers/LangSwitcher';
+import TagCloud from '../containers/TagCloud';
 
 export default function Post() {
-  const { post, isDefaultLang, lang, langRefs } = useRouteData()
+  const { post, isDefaultLang, lang, langRefs, tags } = useRouteData();
   return (
     <div>
       <LangSwitcher langRefs={langRefs} />
-      <Link to="/">{'<'} Back</Link>
+      <Link to="/">{"<"} Back</Link>
       <br />
       <h3>{post.title}</h3>
       <p>{post.body}</p>
-      <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={[{value: "tag1", "hits": 2}, {value: "tag2", "hits": 2}, {value: "tag3", "hits": 1},  {value: "tag4", "hits": 10}]}/>
+      <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
     </div>
-  )
+  );
 }

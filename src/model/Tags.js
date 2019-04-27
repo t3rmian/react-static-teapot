@@ -1,10 +1,12 @@
 import { flatMap } from '../utils';
+import { gradeTags } from './Index';
 
 export default function Tags(blog, defaultLang, lang) {
   const isDefaultLang = defaultLang === lang;
   const path = isDefaultLang ? "/tags/" : `/${lang}/tags/`;
   const postPath = isDefaultLang ? "/posts/" : `/${lang}/posts/`;
   const tags = [...new Set(flatMap(blog[lang], post => post.tags))];
+  const pageTags = gradeTags(blog[lang]);
 
   return tags.map(tag => ({
     path: `${path}${tag}`,
@@ -35,7 +37,9 @@ export default function Tags(blog, defaultLang, lang) {
         )
           ? [{ lang: defaultLang, url: `/tags/${tag}` }]
           : [])
-      ]
+      ],
+      tag,
+      tags: pageTags
     })
   }));
 }

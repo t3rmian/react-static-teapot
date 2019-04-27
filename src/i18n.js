@@ -7,9 +7,9 @@ const resources = {
       "date=year+month+day": "{{date, year+month+day}}",
       "date=year+month": "{{date, year+month}}",
       Recent: "Recent",
-      Tags: "Posts by tag",
+      "Posts by tag": "Posts by tag: {{tag}}",
       More: "More...",
-      "Search results": "Search results for any of the following query parts:",
+      "Search results": "Search results for any of the following query parts: {{parts}}",
       "Empty query": "Oops, empty query...",
       "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it."
     }
@@ -17,9 +17,9 @@ const resources = {
   pl: {
     translation: {
       Recent: "Najnowsze",
-      Tags: "Artykuły według etykiety",
+      "Posts by tag": "Artykuły według etykiety: {{tag}}",
       More: "Więcej...",
-      "Search results": "Rezultaty wyszukiwania dla następujących części zapytania:",
+      "Search results": "Rezultaty wyszukiwania dla następujących części zapytania: {{parts}}",
       "Empty query": "Ups, puste zapytanie...",
       "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy."
     }
