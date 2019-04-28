@@ -1,0 +1,90 @@
+$primary-color: #108db8;
+$sans-serif-font: "HelveticaNeue-Light",
+"Helvetica Neue Light",
+"Helvetica Neue",
+Helvetica,
+Arial,
+"Lucida Grande",
+sans-serif;
+
+body {
+  font-family: $sans-serif-font;
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+button.link {
+  text-decoration: none;
+  color: $primary-color;
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+nav {
+  width: 100%;
+  background: $primary-color;
+
+  a {
+    color: white;
+    padding: 1rem;
+    display: inline-block;
+  }
+}
+
+.content {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+
+.date-head {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.date-col {
+  padding-left: 2em;
+}
+
+.date-col+td {
+  padding-left: 1em;
+}
+
+.link {
+  outline-color: transparent;
+  align-items: normal;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgb(0, 0, 238);
+  border-style: none;
+  box-sizing: content-box;
+  color: rgb(0, 0, 238);
+  cursor: pointer;
+  display: inline;
+  font: inherit;
+  padding: 0;
+  perspective-origin: 0 0;
+  text-align: start;
+  text-decoration: underline;
+  transform-origin: 0 0;
+  -moz-appearance: none;
+  -webkit-logical-height: 1em;
+  -webkit-logical-width: auto;
+}
+
+@supports (-moz-appearance: none) {
+  .link::-moz-focus-inner {
+    border: none;
+    padding: 0;
+  }
+
+  .link:focus {
+    outline-style: dotted;
+    outline-width: 1px;
+  }
+}

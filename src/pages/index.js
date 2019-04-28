@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useRouteData } from "react-static";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRouteData } from 'react-static';
 
-import Header from "../containers/Header";
-import LangSwitcher from "../containers/LangSwitcher";
-import PostList from "../containers/PostList";
-import TagCloud from "../containers/TagCloud";
+import Header from '../containers/Header';
+import LangSwitcher from '../containers/LangSwitcher';
+import PostList from '../containers/PostList';
+import TagCloud from '../containers/TagCloud';
 
 export default () => {
   const { t, i18n } = useTranslation();
@@ -27,12 +27,13 @@ export default () => {
         <h2>{t("Recent")}</h2>
         <PostList posts={posts} />
         {!expanded && (
-          <a
+          <button
+            className="link"
             onClick={() => setExpanded(true)}
             style={{ textAlign: "right", float: "right" }}
           >
             {t("More")}
-          </a>
+          </button>
         )}
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </main>

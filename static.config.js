@@ -31,6 +31,7 @@ export default {
       }
     ],
     require.resolve("react-static-plugin-reach-router"),
-    require.resolve("react-static-plugin-sitemap")
+    require.resolve("react-static-plugin-sitemap"),
+    require.resolve("react-static-plugin-sass")
   ]
 };

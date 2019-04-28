@@ -1,4 +1,4 @@
-import './app.css';
+import './app.scss';
 
 import { Link, Router } from 'components/Router';
 import Dynamic from 'containers/Dynamic';

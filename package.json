@@ -19,6 +19,7 @@
     "react-i18next": "^10.7.0",
     "react-static": "^7.0.0",
     "react-static-plugin-reach-router": "^7.0.0",
+    "react-static-plugin-sass": "^7.0.10",
     "react-static-plugin-sitemap": "^7.0.0",
     "react-static-plugin-source-filesystem": "^7.0.0"
   },
