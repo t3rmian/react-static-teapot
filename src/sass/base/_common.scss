@@ -1,0 +1,95 @@
+html,
+body,
+#root,
+.page-content {
+    height: 100%;
+}
+
+#root>div {
+    width: 100%;
+}
+
+#root {
+    display: flex;
+    align-items: center;
+}
+
+.loading {
+    text-align: center;
+}
+
+* {
+    color: $primary-color-text;
+    font-family: $text-font-family;
+}
+
+header * {
+    color: $primary-color-text-more-intense;
+}
+
+header div * {
+    color: $primary-color-text-more-intense;
+    font-family: $header-font-family;
+}
+
+body {
+    font-weight: 300;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+a,
+button.link {
+    text-decoration: none;
+    color: $primary-color;
+}
+
+a:hover,
+button.link:hover {
+    color: $primary-color-hover
+}
+
+.uppercase {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.link {
+    outline-color: transparent;
+    align-items: normal;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgb(0, 0, 238);
+    border-style: none;
+    box-sizing: content-box;
+    color: rgb(0, 0, 238);
+    cursor: pointer;
+    display: inline;
+    font: inherit;
+    padding: 0;
+    perspective-origin: 0 0;
+    text-align: start;
+    text-decoration: underline;
+    transform-origin: 0 0;
+    -moz-appearance: none;
+    -webkit-logical-height: 1em;
+    -webkit-logical-width: auto;
+}
+
+@supports (-moz-appearance: none) {
+    .link::-moz-focus-inner {
+        border: none;
+        padding: 0;
+    }
+
+    .link:focus {
+        outline-style: dotted;
+        outline-width: 1px;
+    }
+}
+
+.langs,
+.tag-cloud,
+nav {
+    display: none;
+}

@@ -1,0 +1,15 @@
+.header-row {
+    display: flex;
+    align-items: center;
+}
+
+.logo-title {
+    padding-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.logo {
+    max-width: 216px;
+}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRouteData } from 'react-static';
 
 import Header from '../containers/Header';
 import LangSwitcher from '../containers/LangSwitcher';
 import PostList from '../containers/PostList';
 import TagCloud from '../containers/TagCloud';
+import { useRouteData } from 'react-static';
+import { useTranslation } from 'react-i18next';
 
 export default () => {
   const { t, i18n } = useTranslation();

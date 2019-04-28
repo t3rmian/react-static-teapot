@@ -1,11 +1,11 @@
 import './app.scss';
 
+import { Head, Root, Routes, addPrefetchExcludes } from 'react-static';
 import { Link, Router } from 'components/Router';
-import Dynamic from 'containers/Dynamic';
-import Search from 'containers/Search';
-import React from 'react';
-import { addPrefetchExcludes, Head, Root, Routes } from 'react-static';
 
+import Dynamic from 'containers/Dynamic';
+import React from 'react';
+import Search from 'containers/Search';
 import i18n from './i18n';
 
 const langs = Object.keys(i18n.services.resourceStore.data);
@@ -29,7 +29,7 @@ function App() {
         <Link to="/dynamic">Dynamic</Link>
       </nav>
       <div className="page-content">
-        <React.Suspense fallback={<em>Loading...</em>}>
+        <React.Suspense fallback={<div className="loading"><em>Loading...</em></div>}>
           <Router>
             <Dynamic path="dynamic" />
             <Search
