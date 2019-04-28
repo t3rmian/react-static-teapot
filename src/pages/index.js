@@ -17,6 +17,10 @@ export default () => {
   });
   if (!expanded) {
     posts = posts.slice(0, 1);
+  } else {
+    for (let i = 1; i < posts.length; i++) {
+      posts[i].expanded = true;
+    }
   }
 
   return (

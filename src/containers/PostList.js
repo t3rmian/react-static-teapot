@@ -1,8 +1,7 @@
 import { Link } from 'components/Router';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-
 import { groupBy } from '../utils.js';
+import { useTranslation } from 'react-i18next';
 
 export default function PostList(props) {
   const { posts } = props;
@@ -22,12 +21,16 @@ export default function PostList(props) {
           {monthAndPosts[1].map(post => (
             <tr key={post.title}>
               <td className="date-col">
+              <div className={post.expanded ? 'expanded' : ''}>
                 {t("date=year+month+day", {
                   date: new Date(post.fileInfo.modifiedAt)
                 })}
+                </div>
               </td>
               <td>
+                <div className={post.expanded ? 'expanded' : ''}>
                 <Link to={post.path}>{post.title}</Link>
+                </div>
               </td>
             </tr>
           ))}
