@@ -19,7 +19,7 @@ export default function TagCloud(props) {
   tagGroups.sort((a, b) => b[0] - a[0]);
   tagGroups.forEach(group => group[1].sort((a, b) => b.hits - a.hits));
   return (
-    <div
+    <div className="tag-cloud"
       style={{
         position: "absolute",
         top: "50px",

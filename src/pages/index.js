@@ -20,11 +20,11 @@ export default () => {
   }
 
   return (
-    <div>
+    <div className="index-content">
       <LangSwitcher langRefs={langRefs} />
       <Header home={home} />
       <main>
-        <h2>{t("Recent")}</h2>
+        <h2 className="uppercase">{t("Recent")}</h2>
         <PostList posts={posts} />
         {!expanded && (
           <button

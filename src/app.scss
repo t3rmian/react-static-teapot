@@ -1,4 +1,14 @@
 $primary-color: #108db8;
+$primary-color-hover: #0d6b8a;
+$primary-color-text: #333;
+$primary-color-text-less-intense: #666;
+$primary-color-text-more-intense: #000;
+$header-font-family: 'Black Ops One',
+cursive;
+$title-font-family: 'Raleway',
+sans-serif;
+$text-font-family: 'Montserrat',
+sans-serif;
 $sans-serif-font: "HelveticaNeue-Light",
 "Helvetica Neue Light",
 "Helvetica Neue",
@@ -7,8 +17,38 @@ Arial,
 "Lucida Grande",
 sans-serif;
 
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Montserrat|Raleway');
+
+* {
+  color: $primary-color-text;
+  font-family: $text-font-family;
+}
+
+.index-content th {
+  font-weight: normal;
+  font-family: $title-font-family;
+}
+
+.index-content .date-col {
+  color: $primary-color-text-less-intense;
+  font-family: $title-font-family;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+header * {
+  color: $primary-color-text-more-intense;
+}
+
+header div * {
+  color: $primary-color-text-more-intense;
+  font-family: $header-font-family;
+}
+
 body {
-  font-family: $sans-serif-font;
   font-weight: 300;
   font-size: 16px;
   margin: 0;
@@ -19,7 +59,15 @@ a,
 button.link {
   text-decoration: none;
   color: $primary-color;
-  font-weight: bold;
+  -webkit-transition: color 0.1s cubic-bezier(0.5, 0, 0.75, 0.75);
+  -moz-transition: color 0.1s cubic-bezier(0.5, 0, 0.75, 0.75);
+  -ms-transition: color 0.1s cubic-bezier(0.5, 0, 0.75, 0.75);
+  -o-transition: color 0.1s cubic-bezier(0.5, 0, 0.75, 0.75);
+}
+
+a:hover,
+button.link:hover {
+  color: $primary-color-hover
 }
 
 img {
@@ -37,8 +85,7 @@ nav {
   }
 }
 
-.content {
-  padding: 1rem;
+.index-content {
   max-width: 800px;
   margin: 0 auto 0 auto;
 }
@@ -87,4 +134,61 @@ nav {
     outline-style: dotted;
     outline-width: 1px;
   }
+}
+
+
+.logo {
+  max-width: 216px;
+}
+
+header,
+main {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+header {
+  padding-top: 2rem;
+}
+
+main {
+  padding-bottom: 2rem;
+}
+
+
+.logo-title {
+  padding-top: 2rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+}
+
+.logo-title {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.langs,
+.tag-cloud,
+nav {
+  display: none;
+}
+
+html,
+body,
+#root,
+.page-content {
+  height: 100%;
+}
+
+#root>div {
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  align-items: center;
 }

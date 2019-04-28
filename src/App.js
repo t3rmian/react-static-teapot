@@ -28,7 +28,7 @@ function App() {
         <Link to="/search">Search</Link>
         <Link to="/dynamic">Dynamic</Link>
       </nav>
-      <div className="content">
+      <div className="page-content">
         <React.Suspense fallback={<em>Loading...</em>}>
           <Router>
             <Dynamic path="dynamic" />
