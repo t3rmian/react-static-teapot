@@ -5,8 +5,9 @@ const resources = {
   en: {
     translation: {
       defaultLang: "en",
-      "date=year+month+day": "{{date, year+month+day}}",
       "date=year+month": "{{date, year+month}}",
+      "date=month+day": "{{date, month+day}}",
+      "date=post": "{{date, year+month+day}}",
       Recent: "Recent",
       "Posts by tag": "Posts by tag: {{tag}}",
       More: "More...",
@@ -15,7 +16,9 @@ const resources = {
       "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it.",
       posts: "posts",
       tags: "tags",
-      search: "search"
+      search: "search",
+      "count minutes read": "{{count}} minute read",
+      "count minutes read_plural": "{{count}} minutes read"
     }
   },
   pl: {
@@ -28,7 +31,10 @@ const resources = {
       "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy.",
       posts: "posty",
       tags: "tagi",
-      search: "szukaj"
+      search: "szukaj",
+      "count minutes read_0": "{{count}} minuta",
+      "count minutes read_1": "{{count}} minuty",
+      "count minutes read_2": "{{count}} minut"
     }
   }
 };
@@ -47,8 +53,10 @@ i18n.use(initReactI18next).init({
         let options = {};
         if (format === "year+month") {
           options = { year: "numeric", month: "short" };
-        } else if (format === "year+month+day") {
+        } else if (format === "month+day") {
           options = { month: "long", day: "numeric" };
+        } else if (format === "year+month+day") {
+          options = { year: "numeric", month: "long", day: "numeric" };
         }
         return new Intl.DateTimeFormat(lng, options).format(value);
       }

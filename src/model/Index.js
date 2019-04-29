@@ -1,8 +1,9 @@
-import i18n from '../i18n';
-import Posts from '../model/Posts';
+import Posts from "../model/Posts";
+import i18n from "../i18n";
 
-export function gradeTags(posts) {
+export function gradeTags(blog, isDefaultLang, lang) {
   const tags = [];
+  const posts = blog[lang];
   posts.forEach(post => {
     if (post.tags != null) {
       post.tags.forEach(tag => {
@@ -10,7 +11,13 @@ export function gradeTags(posts) {
         if (tags.some(t => t.value === tag)) {
           tags.find(t => t.value === tag).hits++;
         } else {
-          tags.push({ value: tag, hits: 1 });
+          tags.push({
+            value: tag,
+            hits: 1,
+            path: isDefaultLang
+              ? `/${i18n.t("tags", { lng: lang })}/${tag}/`
+              : `/${lang}/${i18n.t("tags", { lng: lang })}/${tag}/`
+          });
         }
       });
     }
@@ -22,7 +29,7 @@ export default function Index(content, defaultLang, lang) {
   const { blog, home } = content;
   const isDefaultLang = defaultLang === lang;
   const path = isDefaultLang ? "/" : `/${lang}/`;
-  const tags = gradeTags(blog[lang]);
+  const tags = gradeTags(blog, defaultLang === lang, lang);
 
   return {
     path,

@@ -1,0 +1,44 @@
+.post {
+    display: flex;
+    align-items: center;
+
+    .page {
+        width: 900px;
+        margin: 0 auto 0 auto;
+        padding: 2rem;
+
+        .header {
+            text-align: center;
+
+            .title {
+                margin-bottom: 0.75rem;
+            }
+
+            .meta {
+                margin-bottom: 0.5rem;
+
+                .item:not(:first-child):before {
+                    content: '\00B7';
+                    padding: 0 0.5em;
+                }
+            }
+
+            .tags {
+                margin-bottom: 0.5rem;
+
+                .item:not(:first-child):before {
+                    content: ',';
+                    padding-right: 0.5em;
+                }
+            }
+        }
+
+        .content {
+            text-align: justify;
+
+            .author {
+                float: right;
+            }
+        }
+    }
+}

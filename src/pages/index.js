@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Header from '../containers/Header';
-import LangSwitcher from '../containers/LangSwitcher';
-import PostList from '../containers/PostList';
-import TagCloud from '../containers/TagCloud';
-import { useRouteData } from 'react-static';
-import { useTranslation } from 'react-i18next';
+import Header from "../containers/Header";
+import LangSwitcher from "../containers/LangSwitcher";
+import PostList from "../containers/PostList";
+import TagCloud from "../containers/TagCloud";
+import { useRouteData } from "react-static";
+import { useTranslation } from "react-i18next";
 
 export default () => {
   const { t, i18n } = useTranslation();
@@ -20,23 +20,25 @@ export default () => {
   }
 
   return (
-    <div className="index-content">
-      <LangSwitcher langRefs={langRefs} />
-      <Header home={home} />
-      <main>
-        <h2 className="uppercase">{t("Recent")}</h2>
-        <PostList posts={posts} />
-        {!expanded && (
-          <button
-            className="link"
-            onClick={() => setExpanded(true)}
-            style={{ textAlign: "right", float: "right" }}
-          >
-            {t("More")}
-          </button>
-        )}
-        <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
-      </main>
+    <div className="index">
+      <div className="page">
+        <LangSwitcher langRefs={langRefs} />
+        <Header home={home} />
+        <main>
+          <h2 className="uppercase">{t("Recent")}</h2>
+          <PostList posts={posts} />
+          {!expanded && (
+            <button
+              className="link"
+              onClick={() => setExpanded(true)}
+              style={{ textAlign: "right", float: "right" }}
+            >
+              {t("More")}
+            </button>
+          )}
+          <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        </main>
+      </div>
     </div>
   );
 };

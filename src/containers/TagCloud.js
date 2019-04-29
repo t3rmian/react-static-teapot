@@ -1,12 +1,10 @@
+import { flatMap, groupBy } from '../utils';
+
 import { Link } from 'components/Router';
 import React from 'react';
 
-import i18n from '../i18n';
-import { flatMap, groupBy } from '../utils';
-
 export default function TagCloud(props) {
-  const { tags, isDefaultLang, lang } = props;
-  i18n.changeLanguage(lang);
+  const { tags } = props;
   const maxHits = tags.reduce((a, b) => Math.max(a, b.hits), tags[0].hits);
   const minHits = tags.reduce((a, b) => Math.min(a, b.hits), tags[0].hits);
   const diff = maxHits - minHits;
@@ -32,11 +30,7 @@ export default function TagCloud(props) {
           {group[1].map(tag => (
             <Link
               key={tag.value}
-              to={
-                isDefaultLang
-                  ? `/${i18n.t("tags")}/${tag.value}/`
-                  : `/${lang}/${i18n.t("tags")}/${tag.value}/`
-              }
+              to={tag.path}
             >{`${tag.value}`}</Link>
           ))}
         </div>
