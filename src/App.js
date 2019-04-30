@@ -4,6 +4,7 @@ import { Head, Root, Routes, addPrefetchExcludes } from "react-static";
 import { Link, Router } from "components/Router";
 
 import Dynamic from "containers/Dynamic";
+import Loader from "./components/Loader";
 import React from "react";
 import Search from "containers/Search";
 import i18n from "./i18n";
@@ -28,13 +29,7 @@ function App() {
         <Link to="/search">Search</Link>
         <Link to="/dynamic">Dynamic</Link>
       </nav>
-      <React.Suspense
-        fallback={
-          <div className="loading">
-            <em>Loading...</em>
-          </div>
-        }
-      >
+      <React.Suspense fallback={Loader()}>
         <Router>
           <Dynamic path="dynamic" />
           <Search

@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
-import { prefetch } from "react-static";
 
+import Header from "../containers/Header";
 import LangSwitcher from "../containers/LangSwitcher";
+import Loader from "../components/Loader";
+import PostList from "./PostList";
 import TagCloud from "../containers/TagCloud";
 import { countSubstrings } from "../utils.js";
-import PostList from "./PostList";
-
-function Loader() {
-  return <b>Loading ...</b>;
-}
+import { prefetch } from "react-static";
+import { withTranslation } from "react-i18next";
 
 async function AsyncSearch(props) {
   const path = props.location.pathname;
   const { t, i18n } = props;
-  let { posts, lang, isDefaultLang, langRefs, tags } = await prefetch(
+  let { posts, lang, isDefaultLang, langRefs, tags, root } = await prefetch(
     props.lang == null ? "/" : "/" + props.lang
   );
   i18n.changeLanguage(lang);
@@ -34,15 +32,11 @@ async function AsyncSearch(props) {
 
   let header;
   if (words.length > 0) {
-    header = (
-      <div>
-        {t("Search results", {
-          parts: " " + words.map(word => '"' + word + '"').join(", ")
-        })}
-      </div>
-    );
+    header = t("Search results", {
+      parts: " " + words.map(word => '"' + word + '"').join(", ")
+    });
   } else {
-    header = <div>{t("Empty query")}</div>;
+    header = t("Empty query");
   }
 
   let content;
@@ -52,11 +46,14 @@ async function AsyncSearch(props) {
     content = <div>{t("No content")}</div>;
   }
   return (
-    <div>
-      <LangSwitcher langRefs={langRefs} />
-      {header}
-      {content}
-      <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+    <div className="search-container">
+      <div className="page">
+        <LangSwitcher langRefs={langRefs} />
+        <Header root={root} />
+        <div className="search-header">{header}</div>
+        {content}
+        <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+      </div>
     </div>
   );
 

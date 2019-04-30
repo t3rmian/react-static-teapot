@@ -1,4 +1,4 @@
-.index-container {
+.tags-container {
     height: 100%;
     display: flex;
     align-items: center;
@@ -8,5 +8,13 @@
         max-width: 800px;
         margin: 0 auto 0 auto;
         padding: 2rem;
+
+        .header-row {
+            margin-bottom: 2rem;
+
+            .logo {
+                margin: auto
+            }
+        }
     }
 }

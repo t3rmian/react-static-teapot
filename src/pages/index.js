@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { home, posts, lang, isDefaultLang, langRefs, tags } = useRouteData();
+  let { home, posts, lang, isDefaultLang, langRefs, tags, root } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -20,10 +20,10 @@ export default () => {
   }
 
   return (
-    <div className="index">
+    <div className="index-container">
       <div className="page">
         <LangSwitcher langRefs={langRefs} />
-        <Header home={home} />
+        <Header home={home} root={root} />
         <main>
           <h2 className="uppercase">{t("Recent")}</h2>
           <PostList posts={posts} />

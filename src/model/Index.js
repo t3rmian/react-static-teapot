@@ -51,8 +51,9 @@ export default function Index(content, defaultLang, lang) {
           })),
         { lang: defaultLang, url: "/" }
       ],
-      tags
+      tags,
+      root: path
     }),
-    children: Posts(blog, defaultLang, lang, tags)
+    children: Posts(blog, defaultLang, lang, tags, path),
   };
 }

@@ -1,6 +1,6 @@
 import i18n from '../i18n';
 
-export default function Posts(blog, defaultLang, lang, tags) {
+export default function Posts(blog, defaultLang, lang, tags, root) {
   const isDefaultLang = defaultLang === lang;
 
   return blog[lang].map(post => ({
@@ -31,7 +31,8 @@ export default function Posts(blog, defaultLang, lang, tags) {
             ]
           : [])
       ],
-      tags
+      tags,
+      root
     })
   }));
 }

@@ -1,15 +1,12 @@
-import { flatMap } from '../utils';
-import { gradeTags } from './Index';
-import i18n from '../i18n';
+import { flatMap } from "../utils";
+import { gradeTags } from "./Index";
+import i18n from "../i18n";
 
 export default function Tags(blog, defaultLang, lang) {
   const isDefaultLang = defaultLang === lang;
-  const path = isDefaultLang
-    ? `/${i18n.t("tags", {lng: lang})}/`
-    : `/${lang}/${i18n.t("tags", {lng: lang})}/`;
-  const postPath = isDefaultLang
-    ? `/${i18n.t("posts", {lng: lang})}/`
-    : `/${lang}/${i18n.t("posts", {lng: lang})}/`;
+  const root = isDefaultLang ? "/" : `/${lang}/`;
+  const path = `${root}${i18n.t("tags", { lng: lang })}/`;
+  const postPath = `${root}${i18n.t("posts", { lng: lang })}/`;
   const tags = [...new Set(flatMap(blog[lang], post => post.tags))];
   const pageTags = gradeTags(blog, defaultLang === lang, lang);
 
@@ -49,7 +46,8 @@ export default function Tags(blog, defaultLang, lang) {
           : [])
       ],
       tag,
-      tags: pageTags
+      tags: pageTags,
+      root
     })
   }));
 }

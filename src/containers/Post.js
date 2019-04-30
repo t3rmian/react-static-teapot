@@ -7,14 +7,14 @@ import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
 export default function Post() {
-  const { post, isDefaultLang, lang, langRefs, tags } = useRouteData();
+  const { post, isDefaultLang, lang, langRefs, tags, root } = useRouteData();
   const { t } = useTranslation();
   const minutesRead = Math.round(0.5 + post.contents.split(" ").length / 130);
   return (
-    <div className="post">
+    <div className="post-container">
       <div className="page">
         <LangSwitcher langRefs={langRefs} />
-        <Link to="/">{"<"}</Link>
+        <Link to={root}>{"<"}</Link>
         <br />
         <div className="header">
           <h2 className="title">{post.title}</h2>
