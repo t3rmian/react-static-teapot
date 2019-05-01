@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Languages from "../components/Languages";
 import PostList from "../components/Posts";
-import TagCloud from "../containers/TagCloud";
+import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
 export default () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   let {
     home,
     posts,
@@ -18,7 +18,6 @@ export default () => {
     tags,
     root
   } = useRouteData();
-  i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
     return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
@@ -37,7 +36,7 @@ export default () => {
           {!expanded && (
             <div className="more">
               <button className="link" onClick={() => setExpanded(true)}>
-                {t("More")}
+                {t("More", {lng: lang})}
               </button>
             </div>
           )}

@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Languages from "../components/Languages";
 import Posts from "../components/Posts";
 import React from "react";
-import TagCloud from "../containers/TagCloud";
+import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 

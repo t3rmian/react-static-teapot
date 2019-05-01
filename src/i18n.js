@@ -20,7 +20,9 @@ const resources = {
       tags: "tags",
       search: "search",
       "count minutes read": "{{count}} minute read",
-      "count minutes read_plural": "{{count}} minutes read"
+      "count minutes read_plural": "{{count}} minutes read",
+      "Not found": "404 - Oh no's! We couldn't find that page :(",
+      "Tag Cloud": "Tag Cloud"
     }
   },
   pl: {
@@ -36,7 +38,9 @@ const resources = {
       search: "szukaj",
       "count minutes read_0": "{{count}} minuta",
       "count minutes read_1": "{{count}} minuty",
-      "count minutes read_2": "{{count}} minut"
+      "count minutes read_2": "{{count}} minut",
+      "Not found": "404 - nic tu nie ma",
+      "Tag Cloud": "Chmura tagów"
     }
   }
 };

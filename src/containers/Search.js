@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Languages from "../components/Languages";
 import Loader from "../components/Loader";
 import Posts from "../components/Posts";
-import TagCloud from "../containers/TagCloud";
+import TagCloud from "../components/TagCloud";
 import { countSubstrings } from "../utils.js";
 import { prefetch } from "react-static";
 import { withTranslation } from "react-i18next";

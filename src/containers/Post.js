@@ -1,7 +1,7 @@
 import Languages from "../components/Languages";
 import { Link } from "components/Router";
 import React from "react";
-import TagCloud from "../containers/TagCloud";
+import TagCloud from "../components/TagCloud";
 import convert from "htmr";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
