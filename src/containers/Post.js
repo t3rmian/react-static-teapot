@@ -1,6 +1,7 @@
 import Languages from "../components/Languages";
 import { Link } from "components/Router";
 import React from "react";
+import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import convert from "htmr";
 import { useRouteData } from "react-static";
@@ -13,6 +14,7 @@ export default function Post() {
   return (
     <div className="post-container">
       <div className="page">
+        <SearchBar root={root} lang={lang} />
         <Link to={root}>{"<"}</Link>
         <br />
         <div className="header">

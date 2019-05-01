@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Languages from "../components/Languages";
 import Posts from "../components/Posts";
 import React from "react";
+import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
@@ -21,6 +22,7 @@ export default () => {
   return (
     <div className="tags-container">
       <div className="page">
+        <SearchBar root={root} lang={lang} />
         <Header root={root} />
         <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>
         <Posts posts={posts} />

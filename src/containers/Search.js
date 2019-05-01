@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Languages from "../components/Languages";
 import Loader from "../components/Loader";
 import Posts from "../components/Posts";
+import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import { countSubstrings } from "../utils.js";
 import { prefetch } from "react-static";
@@ -48,6 +49,7 @@ async function AsyncSearch(props) {
   return (
     <div className="search-container">
       <div className="page">
+        <SearchBar root={root} lang={lang} />
         <Header root={root} />
         <div className="search-header">{header}</div>
         {content}

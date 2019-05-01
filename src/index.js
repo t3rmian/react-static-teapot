@@ -1,15 +1,11 @@
 import './i18n';
 
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
-
-// Your top level component
-// Export your top level component as JSX (for static rendering)
 export default App;
 
-// Render your app
 if (typeof document !== "undefined") {
   const target = document.getElementById("root");
 
@@ -21,10 +17,8 @@ if (typeof document !== "undefined") {
     renderMethod(<Comp />, target);
   };
 
-  // Render!
   render(App);
 
-  // Hot Module Replacement
   if (module && module.hot) {
     module.hot.accept("./App", () => {
       render(App);
