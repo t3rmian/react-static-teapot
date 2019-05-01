@@ -3,7 +3,7 @@ import React from 'react';
 import { groupBy } from '../utils.js';
 import { useTranslation } from 'react-i18next';
 
-export default function PostList(props) {
+export default function Posts(props) {
   const { posts } = props;
   const { t } = useTranslation();
   const postsByMonth = groupBy(posts, post =>

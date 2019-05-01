@@ -89,7 +89,20 @@ button.link:hover {
     }
 }
 
-.langs,
+.more {
+    text-align: right;
+}
+
+.langs {
+    margin: 0.5rem 0;
+    text-align: center;
+
+    .lang:not(:first-child):before {
+        content: '\00B7';
+        padding: 0 0.5em;
+    }
+}
+
 .tag-cloud,
 nav {
     display: none;

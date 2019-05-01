@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import Header from "../containers/Header";
-import LangSwitcher from "../containers/LangSwitcher";
+import Header from "../components/Header";
+import Languages from "../components/Languages";
 import Loader from "../components/Loader";
-import PostList from "./PostList";
+import Posts from "../components/Posts";
 import TagCloud from "../containers/TagCloud";
 import { countSubstrings } from "../utils.js";
 import { prefetch } from "react-static";
@@ -41,17 +41,17 @@ async function AsyncSearch(props) {
 
   let content;
   if (matchingPosts.length > 0) {
-    content = <PostList posts={matchingPosts} />;
+    content = <Posts posts={matchingPosts} />;
   } else {
     content = <div>{t("No content")}</div>;
   }
   return (
     <div className="search-container">
       <div className="page">
-        <LangSwitcher langRefs={langRefs} />
         <Header root={root} />
         <div className="search-header">{header}</div>
         {content}
+        <Languages langRefs={langRefs} />
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </div>
     </div>

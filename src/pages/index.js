@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 
-import Header from "../containers/Header";
-import LangSwitcher from "../containers/LangSwitcher";
-import PostList from "../containers/PostList";
+import Header from "../components/Header";
+import Languages from "../components/Languages";
+import PostList from "../components/Posts";
 import TagCloud from "../containers/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
 export default () => {
   const { t, i18n } = useTranslation();
-  let { home, posts, lang, isDefaultLang, langRefs, tags, root } = useRouteData();
+  let {
+    home,
+    posts,
+    lang,
+    isDefaultLang,
+    langRefs,
+    tags,
+    root
+  } = useRouteData();
   i18n.changeLanguage(lang);
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
@@ -22,20 +30,18 @@ export default () => {
   return (
     <div className="index-container">
       <div className="page">
-        <LangSwitcher langRefs={langRefs} />
         <Header home={home} root={root} />
         <main>
           <h2 className="uppercase">{t("Recent")}</h2>
           <PostList posts={posts} />
           {!expanded && (
-            <button
-              className="link"
-              onClick={() => setExpanded(true)}
-              style={{ textAlign: "right", float: "right" }}
-            >
-              {t("More")}
-            </button>
+            <div className="more">
+              <button className="link" onClick={() => setExpanded(true)}>
+                {t("More")}
+              </button>
+            </div>
           )}
+          <Languages langRefs={langRefs} />
           <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
         </main>
       </div>

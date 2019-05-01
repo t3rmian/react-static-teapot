@@ -1,0 +1,16 @@
+.langs {
+    margin: 1rem 0 0 0;
+    text-align: center;
+
+    .lang:not(:first-child):before {
+        content: '\00B7';
+        padding: 0 0.5em;
+    }
+
+    .lang {
+        a[disabled] {
+            pointer-events: none;
+            color: $primary-color-text-less-intense;
+        }
+    }
+}

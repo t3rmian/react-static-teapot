@@ -24,15 +24,16 @@ export default function Tags(blog, defaultLang, lang) {
       isDefaultLang,
       langRefs: [
         ...Object.keys(blog)
-          .filter(lang => lang !== defaultLang)
-          .filter(lang =>
-            blog[lang].some(p =>
+          .filter(lng => lng !== defaultLang)
+          .filter(lng =>
+            blog[lng].some(p =>
               p.tags != null ? p.tags.some(t => t === tag) : false
             )
           )
-          .map(lang => ({
-            lang,
-            url: `${lang}/${i18n.t("tags", lang)}/${tag}`
+          .map(lng => ({
+            lang: lng,
+            url: `${lng}/${i18n.t("tags", { lng })}/${tag}`,
+            selected: lng === lang
           })),
         ...(blog[defaultLang].some(p =>
           p.tags != null ? p.tags.some(t => t === tag) : false
@@ -40,7 +41,8 @@ export default function Tags(blog, defaultLang, lang) {
           ? [
               {
                 lang: defaultLang,
-                url: `/${i18n.t("tags", { lng: defaultLang })}/${tag}`
+                url: `/${i18n.t("tags", { lng: defaultLang })}/${tag}`,
+                selected: defaultLang === lang
               }
             ]
           : [])

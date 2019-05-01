@@ -44,16 +44,17 @@ export default function Index(content, defaultLang, lang) {
       isDefaultLang,
       langRefs: [
         ...Object.keys(blog)
-          .filter(lang => lang !== defaultLang)
-          .map(lang => ({
-            lang,
-            url: `/${lang}`
+          .filter(lng => lng !== defaultLang)
+          .map(lng => ({
+            lang: lng,
+            url: `/${lng}`,
+            selected: lng === lang
           })),
-        { lang: defaultLang, url: "/" }
+        { lang: defaultLang, url: "/", selected: defaultLang === lang }
       ],
       tags,
       root: path
     }),
-    children: Posts(blog, defaultLang, lang, tags, path),
+    children: Posts(blog, defaultLang, lang, tags, path)
   };
 }

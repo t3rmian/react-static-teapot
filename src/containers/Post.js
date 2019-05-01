@@ -1,4 +1,4 @@
-import LangSwitcher from "../containers/LangSwitcher";
+import Languages from "../components/Languages";
 import { Link } from "components/Router";
 import React from "react";
 import TagCloud from "../containers/TagCloud";
@@ -13,7 +13,6 @@ export default function Post() {
   return (
     <div className="post-container">
       <div className="page">
-        <LangSwitcher langRefs={langRefs} />
         <Link to={root}>{"<"}</Link>
         <br />
         <div className="header">
@@ -53,9 +52,14 @@ export default function Post() {
         </div>
         <div className="content">
           {convert(post.contents)}
-          {post.author && <br /> && (
-            <span className="author">{post.author}</span>
+          {post.author && (
+            <div className="more">
+              <span className="author">{post.author}</span>
+            </div>
           )}
+        </div>
+        <div className="footer">
+          <Languages langRefs={langRefs} />
         </div>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </div>

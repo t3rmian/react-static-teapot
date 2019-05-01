@@ -5,6 +5,8 @@ const resources = {
   en: {
     translation: {
       defaultLang: "en",
+      en: "English",
+      pl: "Polski",
       "date=year+month": "{{date, year+month}}",
       "date=month+day": "{{date, month+day}}",
       "date=post": "{{date, year+month+day}}",
@@ -24,7 +26,7 @@ const resources = {
   pl: {
     translation: {
       Recent: "Najnowsze",
-      "Posts by tag": "Artykuły według etykiety: {{tag}}",
+      "Posts by tag": "Artykuły z etykietą: {{tag}}",
       More: "Więcej...",
       "Search results": "Rezultaty wyszukiwania dla następujących części zapytania: {{parts}}",
       "Empty query": "Ups, puste zapytanie...",
