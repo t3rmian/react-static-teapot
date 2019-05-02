@@ -1,8 +1,7 @@
-import jdown from 'jdown';
-import path from 'path';
-
 import I18nIndexes from './src/model/I18nIndexes';
 import I18nTags from './src/model/I18nTags';
+import jdown from 'jdown';
+import path from 'path';
 
 export default {
   siteRoot: "https://react-static-teapot.netlify.com",
@@ -15,7 +14,7 @@ export default {
     const home = await jdown("content/home", { fileInfo: true });
     Object.keys(blog).forEach(lang =>
       blog[lang].sort(function(a, b) {
-        return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
+        return new Date(b.date) - new Date(a.date);
       })
     );
     return [

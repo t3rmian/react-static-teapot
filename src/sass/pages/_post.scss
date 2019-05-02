@@ -42,5 +42,19 @@
         .content {
             text-align: justify;
         }
+
+        .more {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+
+            .updated {
+                text-align: left;
+            }
+
+            .author {
+                text-align: right;
+            }
+        }
     }
 }

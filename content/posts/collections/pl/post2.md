@@ -3,6 +3,7 @@ title: Drugi artykuł
 url: drugi-artykuł
 lang: pl
 id: 2
+date: 2019-02-02T12:00:00
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque habitant morbi tristique senectus et netus et malesuada. Ut consequat semper viverra nam libero justo laoreet sit amet. Pharetra convallis posuere morbi leo urna. Ridiculus mus mauris vitae ultricies. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Viverra justo nec ultrices dui sapien. Lorem sed risus ultricies tristique nulla aliquet. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Consequat interdum varius sit amet mattis vulputate enim nulla. Scelerisque felis imperdiet proin fermentum leo vel. Sed viverra tellus in hac habitasse platea. Sit amet mattis vulputate enim nulla aliquet porttitor. Consequat id porta nibh venenatis. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc.
 

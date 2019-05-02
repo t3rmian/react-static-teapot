@@ -7,7 +7,7 @@ export default function Posts(props) {
   const { posts } = props;
   const { t } = useTranslation();
   const postsByMonth = groupBy(posts, post =>
-    t("date=year+month", { date: new Date(post.fileInfo.modifiedAt) })
+    t("date=year+month", { date: new Date(post.date) })
   );
   return (
     <table>
@@ -22,7 +22,7 @@ export default function Posts(props) {
             <tr key={post.title}>
               <td className="date-col">
                 {t("date=month+day", {
-                  date: new Date(post.fileInfo.modifiedAt)
+                  date: new Date(post.date)
                 })}
               </td>
               <td>

@@ -35,7 +35,7 @@ export default function Post() {
           <div className="meta">
             <span className="item">
               {t("date=post", {
-                date: new Date(post.fileInfo.modifiedAt),
+                date: new Date(post.date),
                 lng: lang
               })}
             </span>
@@ -54,10 +54,21 @@ export default function Post() {
         </div>
         <div className="content">
           {convert(post.contents)}
-          {post.author && (
-            <div className="more">
-              <span className="author">{post.author}</span>
-            </div>
+          {(post.updated || post.author) && (
+            <table className="more">
+              <tr>
+                {post.updated && (
+                  <td className="updated">
+                    {t("Updated", { lng: lang }) + ": "}
+                    {t("date=post", {
+                      date: new Date(post.updated),
+                      lng: lang
+                    })}
+                  </td>
+                )}
+                {post.author && <td className="author">{post.author}</td>}
+              </tr>
+            </table>
           )}
         </div>
         <div className="footer">

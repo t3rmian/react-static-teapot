@@ -21,7 +21,7 @@ export default () => {
   } = useRouteData();
   const [expanded, setExpanded] = useState(false);
   posts.sort(function(a, b) {
-    return new Date(b.fileInfo.createdAt) - new Date(a.fileInfo.createdAt);
+    return new Date(b.date) - new Date(a.date);
   });
   if (!expanded) {
     posts = posts.slice(0, 1);
