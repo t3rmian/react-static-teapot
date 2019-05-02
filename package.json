@@ -17,6 +17,7 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-i18next": "^10.7.0",
+    "react-pure-lifecycle": "^3.0.0",
     "react-static": "^7.0.10",
     "react-static-plugin-reach-router": "^7.0.10",
     "react-static-plugin-sass": "^7.0.10",

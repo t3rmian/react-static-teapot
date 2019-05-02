@@ -33,7 +33,7 @@ export default () => {
         <SearchBar root={root} lang={lang} />
         <Header home={home} root={root} />
         <main>
-          <h2 className="uppercase">{t("Recent")}</h2>
+          <h2 className="uppercase">{t("Recent", {lng: lang})}</h2>
           <PostList posts={posts} />
           {!expanded && (
             <div className="more">

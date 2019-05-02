@@ -4,10 +4,34 @@ import React from "react";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import convert from "htmr";
+import lifecycle from "react-pure-lifecycle";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
-export default function Post() {
+const methods = {
+  componentDidMount() {
+    const images = document.querySelectorAll(".content img[data-src]");
+
+    const options = {
+      rootMargin: "100px 0px",
+      root: null
+    };
+
+    function onIntersection(images, observer) {
+      images.forEach(image => {
+        if (image.intersectionRatio > 0.001) {
+          observer.unobserve(image.target);
+          image.target.src = image.target.dataset.src;
+        }
+      });
+    }
+
+    const observer = new IntersectionObserver(onIntersection, options);
+    images.forEach(image => observer.observe(image));
+  }
+};
+
+export function Post() {
   const { post, isDefaultLang, lang, langRefs, tags, root } = useRouteData();
   const { t } = useTranslation();
   const minutesRead = Math.round(0.5 + post.contents.split(" ").length / 130);
@@ -56,18 +80,20 @@ export default function Post() {
           {convert(post.contents)}
           {(post.updated || post.author) && (
             <table className="more">
-              <tr>
-                {post.updated && (
-                  <td className="updated">
-                    {t("Updated", { lng: lang }) + ": "}
-                    {t("date=post", {
-                      date: new Date(post.updated),
-                      lng: lang
-                    })}
-                  </td>
-                )}
-                {post.author && <td className="author">{post.author}</td>}
-              </tr>
+              <tbody>
+                <tr>
+                  {post.updated && (
+                    <td className="updated">
+                      {t("Updated", { lng: lang }) + ": "}
+                      {t("date=post", {
+                        date: new Date(post.updated),
+                        lng: lang
+                      })}
+                    </td>
+                  )}
+                  {post.author && <td className="author">{post.author}</td>}
+                </tr>
+              </tbody>
             </table>
           )}
         </div>
@@ -79,3 +105,5 @@ export default function Post() {
     </div>
   );
 }
+
+export default lifecycle(methods)(Post);
