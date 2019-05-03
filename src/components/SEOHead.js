@@ -3,12 +3,6 @@ import React from "react";
 import { useSiteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
-function extractHtmlText(htmlText) {
-  const div = document.createElement("div");
-  div.innerHTML = htmlText;
-  return div.textContent || div.innerText || "";
-}
-
 function absoluteUrl(siteRoot, url) {
   const isAbsolute = new RegExp("^(?:[a-z]+:)?//", "i");
   return isAbsolute.test(url) ? url : siteRoot + url;
@@ -24,7 +18,7 @@ export default ({
   twitterContentUsername,
   twitterCard
 }) => {
-  const extractedDescription = extractHtmlText(description);
+  const extractedDescription = description.replace(/<(.|\n)*?>/g, '');
   description =
     extractedDescription.length > 160
       ? extractedDescription.substring(0, 159) + "…"
