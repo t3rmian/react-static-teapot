@@ -64,7 +64,7 @@ async function AsyncSearch(props) {
               " - " +
               t("site title", { lng: lang }),
             description: home.contents,
-            lang: "lang",
+            lang,
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),

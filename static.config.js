@@ -1,7 +1,8 @@
-import I18nIndexes from './src/model/I18nIndexes';
-import I18nTags from './src/model/I18nTags';
-import jdown from 'jdown';
-import path from 'path';
+import I18nIndexes from "./src/model/I18nIndexes";
+import I18nTags from "./src/model/I18nTags";
+import React from "react";
+import jdown from "jdown";
+import path from "path";
 
 const siteRoot = "https://react-static-teapot.netlify.com";
 export default {
@@ -33,5 +34,14 @@ export default {
     require.resolve("react-static-plugin-reach-router"),
     require.resolve("react-static-plugin-sitemap"),
     require.resolve("react-static-plugin-sass")
-  ]
+  ],
+  Document: ({ Html, Head, Body, children }) => (
+    <Html lang={undefined}>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Body>{children}</Body>
+    </Html>
+  )
 };

@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 
 export default () => {
   const { t } = useTranslation();
-  console.log("index loaded")
   let {
     home,
     posts,
@@ -41,7 +40,7 @@ export default () => {
               ": " +
               t("blog template", { lng: lang }),
             description: home.contents,
-            lang: "lang",
+            lang,
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),

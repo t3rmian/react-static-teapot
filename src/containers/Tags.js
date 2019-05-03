@@ -32,7 +32,7 @@ export default () => {
               " - " +
               t("site title", { lng: lang }),
             description: tags.map(tag => tag.value).join(", "),
-            lang: "lang",
+            lang,
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),

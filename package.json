@@ -36,6 +36,7 @@
     "serve": "10.1.2"
   },
   "resolutions": {
-    "react-static/webpack-dev-server": "~3.1.10"
+    "react-static/webpack-dev-server": "~3.1.10",
+    "react-static/react-helmet": "5.2.1"
   }
 }

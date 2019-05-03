@@ -2,11 +2,10 @@ import { Link } from "components/Router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export default function TagCloud(props) {
-  const { tags, lang } = props;
+export default function TagCloud({ tags, lang }) {
   const { t } = useTranslation();
   tags.sort((a, b) => b.hits - a.hits);
-  
+
   return (
     <div className="tag-cloud">
       {t("Tag Cloud", { lng: lang })}
