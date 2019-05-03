@@ -17,6 +17,10 @@ div[role=group] {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+
+    >:not(.langs) {
+        font-size: 10em;
+    }
 }
 
 * {

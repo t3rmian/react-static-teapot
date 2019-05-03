@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 
 export default () => {
   const { t } = useTranslation();
+  console.log("index loaded")
   let {
     home,
     posts,
@@ -31,9 +32,24 @@ export default () => {
     <div className="index-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
-        <Header home={home} root={root} />
+        <Header
+          home={home}
+          root={root}
+          seo={{
+            title:
+              t("site title", { lng: lang }) +
+              ": " +
+              t("blog template", { lng: lang }),
+            description: home.contents,
+            lang: "lang",
+            type: "website",
+            langRefs: langRefs,
+            twitterContentUsername: t("twitter author", { lng: lang }),
+            twitterCard: "summary"
+          }}
+        />
         <main>
-          <h2 className="uppercase">{t("Recent", {lng: lang})}</h2>
+          <h2 className="uppercase">{t("Recent", { lng: lang })}</h2>
           <PostList posts={posts} />
           {!expanded && (
             <div className="more">

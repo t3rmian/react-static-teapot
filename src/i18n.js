@@ -12,9 +12,9 @@ const resources = {
       "date=post": "{{date, year+month+day}}",
       Recent: "Recent",
       "Posts by tag": "Posts by tag: {{tag}}",
-      More: "More...",
+      More: "More…",
       "Search results": "Search results for any of the following query parts: {{parts}}",
-      "Empty query": "Oops, empty query...",
+      "Empty query": "Oops, empty query…",
       "No content": "Oh snap! We don't have such content yet. But come back later. Maybe we will write about it.",
       posts: "posts",
       tags: "tags",
@@ -23,16 +23,20 @@ const resources = {
       "count minutes read_plural": "{{count}} minutes read",
       "Not found": "404 - Oh no's! We couldn't find that page :(",
       "Tag Cloud": "Tag Cloud",
-      "Updated": "Updated"
+      "Updated": "Updated",
+
+      "site title": "react-static-teapot",
+      "twitter author": "t3rmian",
+      "blog template": "blog template",
     }
   },
   pl: {
     translation: {
       Recent: "Najnowsze",
       "Posts by tag": "Artykuły z etykietą: {{tag}}",
-      More: "Więcej...",
+      More: "Więcej…",
       "Search results": "Rezultaty wyszukiwania dla następujących części zapytania: {{parts}}",
-      "Empty query": "Ups, puste zapytanie...",
+      "Empty query": "Ups, puste zapytanie…",
       "No content": "O nie! Nie mamy jeszcze takiej zawartości. Ale wpadnij później. Może wkrótce coś o tym napiszemy.",
       posts: "posty",
       tags: "tagi",
@@ -42,7 +46,8 @@ const resources = {
       "count minutes read_2": "{{count}} minut",
       "Not found": "404 - nic tu nie ma",
       "Tag Cloud": "Chmura tagów",
-      "Updated": "Aktualizacja"
+      "Updated": "Aktualizacja",
+      "blog template": "szablon bloga",
     }
   }
 };

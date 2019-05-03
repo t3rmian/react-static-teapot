@@ -3,10 +3,11 @@ import I18nTags from './src/model/I18nTags';
 import jdown from 'jdown';
 import path from 'path';
 
+const siteRoot = "https://react-static-teapot.netlify.com";
 export default {
-  siteRoot: "https://react-static-teapot.netlify.com",
+  siteRoot,
   getSiteData: () => ({
-    title: "React Static"
+    siteRoot
   }),
   getRoutes: async () => {
     const defaultLanguage = "en";

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { capitalize, countSubstrings } from "../utils.js";
 
 import Header from "../components/Header";
 import Languages from "../components/Languages";
@@ -6,16 +7,21 @@ import Loader from "../components/Loader";
 import Posts from "../components/Posts";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
-import { countSubstrings } from "../utils.js";
 import { prefetch } from "react-static";
 import { withTranslation } from "react-i18next";
 
 async function AsyncSearch(props) {
   const path = props.location.pathname;
   const { t, i18n } = props;
-  let { posts, lang, isDefaultLang, langRefs, tags, root } = await prefetch(
-    props.lang == null ? "/" : "/" + props.lang
-  );
+  let {
+    home,
+    posts,
+    lang,
+    isDefaultLang,
+    langRefs,
+    tags,
+    root
+  } = await prefetch(props.lang == null ? "/" : "/" + props.lang);
   i18n.changeLanguage(lang);
 
   const [, query] = props.location.href.split(path);
@@ -50,7 +56,21 @@ async function AsyncSearch(props) {
     <div className="search-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
-        <Header root={root} />
+        <Header
+          root={root}
+          seo={{
+            title:
+              capitalize(t("search", { lng: lang })) +
+              " - " +
+              t("site title", { lng: lang }),
+            description: home.contents,
+            lang: "lang",
+            type: "website",
+            langRefs: langRefs,
+            twitterContentUsername: t("twitter author", { lng: lang }),
+            twitterCard: "summary"
+          }}
+        />
         <div className="search-header">{header}</div>
         {content}
         <Languages langRefs={langRefs} />

@@ -1,6 +1,7 @@
 import Languages from "../components/Languages";
 import { Link } from "components/Router";
 import React from "react";
+import SEOHead from "../components/SEOHead";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import convert from "htmr";
@@ -35,9 +36,28 @@ export function Post() {
   const { post, isDefaultLang, lang, langRefs, tags, root } = useRouteData();
   const { t } = useTranslation();
   const minutesRead = Math.round(0.5 + post.contents.split(" ").length / 130);
+  const hqImgRegex = /data-src=\"(.*?)\">/gi;
+  const lazyImgRegex = /src=\"(.*?)\">/gi;
+  const imageUrl =
+    hqImgRegex.exec(post.contents) != null
+      ? RegExp.$1
+      : lazyImgRegex.exec(post.contents) != null
+      ? RegExp.$1
+      : null;
+
   return (
     <div className="post-container">
       <div className="page">
+        <SEOHead
+          title={post.title + " - " + t("site title", { lng: lang })}
+          description={post.contents}
+          lang={lang}
+          type="article"
+          langRefs={langRefs}
+          image={imageUrl}
+          twitterContentUsername={post.twitterAuthor}
+          twitterCard="summary"
+        />
         <SearchBar root={root} lang={lang} />
         <Link to={root}>{"<"}</Link>
         <br />

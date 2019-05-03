@@ -24,3 +24,7 @@ export function countSubstrings(text, substring) {
   );
   return m ? m.length : 0;
 }
+
+export function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}

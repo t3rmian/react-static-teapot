@@ -4,6 +4,7 @@ import Posts from "../components/Posts";
 import React from "react";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
+import { capitalize } from "../utils.js";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
@@ -23,7 +24,21 @@ export default () => {
     <div className="tags-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
-        <Header root={root} />
+        <Header
+          root={root}
+          seo={{
+            title:
+              capitalize(t("tags", { lng: lang })) +
+              " - " +
+              t("site title", { lng: lang }),
+            description: tags.map(tag => tag.value).join(", "),
+            lang: "lang",
+            type: "website",
+            langRefs: langRefs,
+            twitterContentUsername: t("twitter author", { lng: lang }),
+            twitterCard: "summary"
+          }}
+        />
         <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>
         <Posts posts={posts} />
         <Languages langRefs={langRefs} />
