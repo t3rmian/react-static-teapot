@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: react-static-teapot.netlify.com
+Token: 8b5efef3f30421b88d644c7a469434a562cb4935f83c122327ce4b34aba0cb0c
