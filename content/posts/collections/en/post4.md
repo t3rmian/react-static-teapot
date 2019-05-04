@@ -1,7 +1,6 @@
 ---
 title: Fourth post
 url: fourth-post
-lang: en
 id: 2
 tags:
   - tag1

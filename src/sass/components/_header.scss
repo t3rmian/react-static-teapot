@@ -1,15 +1,34 @@
-.header-row {
-    display: flex;
-    align-items: center;
-}
+header {
+    * {
+        color: $primary-color-text-more-intense;
+    }
 
-.logo-title {
-    padding-top: 2rem;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
+    div * {
+        color: $primary-color-text-more-intense;
+    }
 
-.logo {
-    max-width: 216px;
+    .header-row {
+        display: flex;
+        align-items: center;
+
+        .title-row {
+            padding-left: 2rem;
+
+            .logo-title {
+                padding-top: 2rem;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+
+                h1 {
+                    margin-bottom: 0;
+                    font-family: $header-font-family;
+                }
+            }
+        }
+    }
+
+    .logo {
+        max-width: 216px;
+    }
 }

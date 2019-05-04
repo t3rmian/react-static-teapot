@@ -3,15 +3,9 @@
     align-items: center;
 
     .page {
-        width: 900px;
+        max-width: 1050px;
         margin: 0 auto 0 auto;
         padding: 2rem;
-
-        img {
-            max-width: 1050px;
-            margin-left: 50%;
-            transform: translateX(-50%);
-        }
 
         @media screen and (max-width: 1400px) {
             .tag-cloud {
@@ -47,6 +41,17 @@
 
         .content {
             text-align: justify;
+
+            *:not(img) {
+                padding-left: 75px;
+                padding-right: 75px;
+            }
+
+            img {
+                display: block;
+                margin: 0 auto 0 auto;
+                max-width: 1050px;
+            }
         }
 
         .more {

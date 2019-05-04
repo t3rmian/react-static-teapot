@@ -5,8 +5,7 @@ import convert from "htmr";
 
 export default props => {
   const { home, root, seo } = props;
-  const logo = (seo.image =
-    "https://cdn.pixabay.com/photo/2016/03/31/21/05/beverage-1296175_960_720.png");
+  const logo = (seo.image = "/img/logo.png");
 
   return (
     <header>
@@ -16,12 +15,16 @@ export default props => {
           <img className="logo" src={logo} alt="react-static-teapot" />
         </Link>
         {home && (
-          <div className="logo-title">
-            <h1>{home.title}</h1>
+          <div className="title-row">
+            <div className="logo-title">
+              <h1>{home.title}</h1>
+            </div>
+            {home && (
+              <div className="logo-description">{convert(home.contents)}</div>
+            )}
           </div>
         )}
       </div>
-      {home && convert(home.contents)}
     </header>
   );
 };

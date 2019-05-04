@@ -1,7 +1,6 @@
 ---
 title: Drugi artykuł
 url: drugi-artykuł
-lang: pl
 id: 2
 date: 2019-02-02T12:00:00
 ---
