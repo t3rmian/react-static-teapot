@@ -9,10 +9,24 @@ import Search from "containers/Search";
 import i18n from "./i18n";
 
 const langs = Object.keys(i18n.services.resourceStore.data);
+console.log([
+  `${i18n.t("search", { lng: i18n.t("defaultLang") })}`,
+  ...langs
+    .filter(lang => lang !== i18n.t("defaultLang"))
+    .map(lang => `:lang/${i18n.t("search", { lng: lang })}`),
+  ...langs
+    .filter(lang => lang !== i18n.t("defaultLang"))
+    .map(lang => `${lang}/${i18n.t("search", { lng: lang })}`)
+]);
 addPrefetchExcludes([
   `${i18n.t("search", { lng: i18n.t("defaultLang") })}`,
-  ...langs.map(lang => `:lang/${i18n.t("search", { lng: lang })}`)
-]);
+  ...langs
+    .filter(lang => lang !== i18n.t("defaultLang"))
+    .map(lang => `:lang/${i18n.t("search", { lng: lang })}`),
+  ...langs
+    .filter(lang => lang !== i18n.t("defaultLang"))
+    .map(lang => `${lang}/${i18n.t("search", { lng: lang })}`)
+].map(it => "/" + it));
 
 function App() {
   return (

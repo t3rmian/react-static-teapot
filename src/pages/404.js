@@ -4,7 +4,7 @@ import i18n from "../i18n";
 
 const langs = Object.keys(i18n.services.resourceStore.data);
 
-export default () => (
+export default () => {console.log("render 404"); return (
   <div className="loading">
     <h1>404</h1>
     <Languages
@@ -22,4 +22,4 @@ export default () => (
       ]}
     />
   </div>
-);
+)};
