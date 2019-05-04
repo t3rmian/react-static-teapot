@@ -14,11 +14,13 @@ export default ({
   description,
   type,
   image,
+  date,
   langRefs,
   twitterContentUsername,
   twitterCard
 }) => {
-  const extractedDescription = description.replace(/<(.|\n)*?>/g, '');
+  console.log(date)
+  const extractedDescription = description.replace(/<(.|\n)*?>/g, "");
   description =
     extractedDescription.length > 160
       ? extractedDescription.substring(0, 159) + "…"
@@ -56,6 +58,7 @@ export default ({
         <meta name="twitter:creator" content={`@${twitterContentUsername}`} />
       )}
       {twitterCard && <meta name="twitter:card" content={twitterCard} />}
+      {date && <meta name="date" content={date} />}
     </Head>
   );
 };

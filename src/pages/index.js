@@ -41,6 +41,7 @@ export default () => {
               t("blog template", { lng: lang }),
             description: home.contents,
             lang,
+            date: new Date().toISOString(),
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),

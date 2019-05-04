@@ -55,6 +55,10 @@ export function Post() {
           type="article"
           langRefs={langRefs}
           image={imageUrl}
+          date={(post.updated
+            ? new Date(post.updated)
+            : new Date(post.date)
+          ).toISOString()}
           twitterContentUsername={post.twitterAuthor}
           twitterCard="summary"
         />
