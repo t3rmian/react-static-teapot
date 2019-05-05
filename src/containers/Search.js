@@ -20,7 +20,8 @@ export default function Search() {
     langRefs,
     tags,
     root,
-    path
+    path,
+    noindex
   } = useRouteData();
   const url = typeof window !== "undefined" ? window.location.href : path;
 
@@ -72,7 +73,8 @@ export default function Search() {
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),
-            twitterCard: "summary"
+            twitterCard: "summary",
+            noindex
           }}
         />
         <div className="search-header">{header}</div>

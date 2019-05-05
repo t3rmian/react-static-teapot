@@ -9,6 +9,7 @@ export default function Tags(blog, defaultLang, lang) {
   const postPath = `${root}${i18n.t("posts", { lng: lang })}/`;
   const tags = [...new Set(flatMap(blog[lang], post => post.tags))];
   const pageTags = gradeTags(blog, defaultLang === lang, lang);
+  const noindex = true;
 
   return tags
     .filter(tag => tag != null)
@@ -51,7 +52,9 @@ export default function Tags(blog, defaultLang, lang) {
         ],
         tag,
         tags: pageTags,
-        root
-      })
+        root,
+        noindex
+      }),
+      noindex
     }));
 }

@@ -17,7 +17,8 @@ export default ({
   date,
   langRefs,
   twitterContentUsername,
-  twitterCard
+  twitterCard,
+  noindex
 }) => {
   const extractedDescription = description.replace(/<(.|\n)*?>/g, "");
   description =
@@ -33,6 +34,7 @@ export default ({
     <Head>
       <html lang={lang} />
       <title>{title}</title>
+      {noindex && <meta name="robots" content="noindex" />}
       <meta name="description" property="description" content={description} />
       {type && <meta property="og:type" content={type} />}
       <meta property="og:title" content={title} />

@@ -53,7 +53,8 @@ export default function Index(content, defaultLang, lang) {
         { lang: defaultLang, url: "/", selected: defaultLang === lang }
       ],
       tags,
-      root: path
+      root: path,
+      date: new Date().toISOString()
     }),
     children: Posts(blog, defaultLang, lang, tags, path)
   };

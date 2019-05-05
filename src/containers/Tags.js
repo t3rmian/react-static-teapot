@@ -17,7 +17,8 @@ export default () => {
     langRefs,
     tag,
     tags,
-    root
+    root,
+    noindex
   } = useRouteData();
 
   return (
@@ -36,7 +37,8 @@ export default () => {
             type: "website",
             langRefs: langRefs,
             twitterContentUsername: t("twitter author", { lng: lang }),
-            twitterCard: "summary"
+            twitterCard: "summary",
+            noindex
           }}
         />
         <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>

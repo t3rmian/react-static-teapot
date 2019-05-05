@@ -8,9 +8,13 @@ export default function Search(content, defaultLang, lang) {
   const path = isDefaultLang
     ? `/${i18n.t("search", { lng: lang })}`
     : `/${lang}/${i18n.t("search", { lng: lang })}`;
+  const noindex = true;
+
   search.path = path;
   search.template = "src/containers/Search";
   search.children = undefined;
+  search.noindex = noindex;
+  
   const data = search.getData();
   data.langRefs = [
     ...Object.keys(blog)
@@ -26,6 +30,10 @@ export default function Search(content, defaultLang, lang) {
       selected: defaultLang === lang
     }
   ];
-  search.getData = () => ({ ...data, path });
+  search.getData = () => ({
+    ...data,
+    path,
+    noindex
+  });
   return search;
 }

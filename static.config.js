@@ -9,13 +9,13 @@ const siteRoot =
   process.env.NODE_ENV === "development"
     ? "https://localhost:3000"
     : "https://react-static-teapot.netlify.com";
+const defaultLanguage = "en";
 export default {
   siteRoot,
   getSiteData: () => ({
     siteRoot
   }),
   getRoutes: async () => {
-    const defaultLanguage = "en";
     const blog = await jdown("content/posts", { fileInfo: true });
     const home = await jdown("content/home", { fileInfo: true });
     Object.keys(blog).forEach(lang =>
@@ -37,7 +37,38 @@ export default {
       }
     ],
     require.resolve("react-static-plugin-reach-router"),
-    require.resolve("react-static-plugin-sitemap"),
+    [
+      require.resolve("react-static-plugin-sitemap"),
+      {
+        getAttributes: route => {
+          const attributes = {};
+          const data = route.getData();
+          if (data.post) {
+            if (data.post.updated) {
+              attributes.lastmod = new Date(data.post.updated).toISOString();
+            } else if (data.post.date) {
+              attributes.lastmod = new Date(data.post.date).toISOString();
+            }
+          } else if (data.date) {
+            attributes.lastmod = data.date;
+          }
+
+          data.langRefs.map(ref => {
+            const key = `xhtml:link rel="alternate" hreflang="${
+              ref.lang
+            }" href="${siteRoot}${ref.url}"`;
+            attributes[key] = "";
+            if (ref.lang === defaultLanguage) {
+              const defaultKey = `xhtml:link rel="alternate" hreflang="x-default" href="${siteRoot}${
+                ref.url
+              }"`;
+              attributes[defaultKey] = "";
+            }
+          });
+          return attributes;
+        }
+      }
+    ],
     require.resolve("react-static-plugin-sass")
   ],
   Document: ({ Html, Head, Body, children }) => (
