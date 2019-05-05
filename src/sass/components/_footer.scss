@@ -10,7 +10,15 @@
     .lang {
         a[disabled] {
             pointer-events: none;
-            color: $primary-color-text-less-intense;
         }
+    }
+}
+
+.theme-switcher {
+    position: sticky;
+    padding-top: 1rem;
+
+    button {
+        border-width: 1px;
     }
 }

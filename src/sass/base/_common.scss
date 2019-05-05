@@ -1,12 +1,14 @@
 html,
 body,
 #root,
+#theme,
 div[role=group] {
     height: 100%;
     width: 100%;
 }
 
-#root {
+#root,
+#theme {
     display: flex;
     align-items: center;
 }
@@ -24,7 +26,6 @@ div[role=group] {
 }
 
 * {
-    color: $primary-color-text;
     font-family: $text-font-family;
 }
 
@@ -38,12 +39,6 @@ body {
 a,
 button.link {
     text-decoration: none;
-    color: $primary-color;
-}
-
-a:hover,
-button.link:hover {
-    color: $primary-color-hover
 }
 
 .uppercase {

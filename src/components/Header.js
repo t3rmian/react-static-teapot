@@ -8,7 +8,7 @@ export default props => {
   const logo = (seo.image = "/img/logo.png");
 
   return (
-    <header>
+    <header className="header-container">
       <SEOHead {...seo} />
       <div className="header-row">
         <Link className="logo" to={root}>

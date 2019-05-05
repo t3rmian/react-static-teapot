@@ -1,4 +1,4 @@
-import Languages from "../components/Languages";
+import Footer from "../components/Footer";
 import { Link } from "components/Router";
 import React from "react";
 import SEOHead from "../components/SEOHead";
@@ -46,7 +46,7 @@ export function Post() {
       : null;
 
   return (
-    <div className="post-container">
+    <div className="container post-container">
       <div className="page">
         <SEOHead
           title={post.title + " - " + t("site title", { lng: lang })}
@@ -63,7 +63,9 @@ export function Post() {
           twitterCard="summary"
         />
         <SearchBar root={root} lang={lang} />
-        <Link to={root}>{"<"}</Link>
+        <Link className="post-logo" to={root}>
+          <img src="/img/logo.png" alt="Logo" />
+        </Link>
         <br />
         <div className="header">
           <h2 className="title">{post.title}</h2>
@@ -122,7 +124,7 @@ export function Post() {
           )}
         </div>
         <div className="footer">
-          <Languages langRefs={langRefs} />
+          <Footer langRefs={langRefs} />
         </div>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </div>

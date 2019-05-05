@@ -1,5 +1,5 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Languages from "../components/Languages";
 import Posts from "../components/Posts";
 import React from "react";
 import SearchBar from "../components/SearchBar";
@@ -21,7 +21,7 @@ export default () => {
   } = useRouteData();
 
   return (
-    <div className="tags-container">
+    <div className="container tags-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
         <Header
@@ -41,7 +41,7 @@ export default () => {
         />
         <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>
         <Posts posts={posts} />
-        <Languages langRefs={langRefs} />
+        <Footer langRefs={langRefs} />
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </div>
     </div>

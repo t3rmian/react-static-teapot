@@ -28,6 +28,8 @@ const resources = {
       "site title": "react-static-teapot",
       "twitter author": "t3rmian",
       "blog template": "blog template",
+      "Light theme": "Light theme",
+      "Dark theme": "Dark theme",
     }
   },
   pl: {
@@ -48,6 +50,8 @@ const resources = {
       "Tag Cloud": "Chmura tagów",
       "Updated": "Aktualizacja",
       "blog template": "szablon bloga",
+      "Light theme": "Jasny szablon",
+      "Dark theme": "Ciemny szablon",
     }
   }
 };

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { capitalize, countSubstrings } from "../utils.js";
 
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Languages from "../components/Languages";
 import Loader from "../components/Loader";
 import Posts from "../components/Posts";
 import SearchBar from "../components/SearchBar";
@@ -53,7 +53,7 @@ async function AsyncSearch(props) {
     content = <div>{t("No content")}</div>;
   }
   return (
-    <div className="search-container">
+    <div className="container search-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
         <Header
@@ -73,7 +73,7 @@ async function AsyncSearch(props) {
         />
         <div className="search-header">{header}</div>
         {content}
-        <Languages langRefs={langRefs} />
+        <Footer langRefs={langRefs} />
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Languages from "../components/Languages";
 import PostList from "../components/Posts";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
@@ -28,7 +28,7 @@ export default () => {
   }
 
   return (
-    <div className="index-container">
+    <div className="container index-container">
       <div className="page">
         <SearchBar root={root} lang={lang} />
         <Header
@@ -58,7 +58,7 @@ export default () => {
               </button>
             </div>
           )}
-          <Languages langRefs={langRefs} />
+          <Footer langRefs={langRefs} />
           <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
         </main>
       </div>

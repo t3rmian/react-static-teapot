@@ -19,7 +19,6 @@ export default ({
   twitterContentUsername,
   twitterCard
 }) => {
-  console.log(date)
   const extractedDescription = description.replace(/<(.|\n)*?>/g, "");
   description =
     extractedDescription.length > 160

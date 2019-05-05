@@ -7,6 +7,8 @@ import React from "react";
 import { Router } from "components/Router";
 import Search from "containers/Search";
 import i18n from "./i18n";
+import lifecycle from "react-pure-lifecycle";
+import { loadTheme } from "components/Theme";
 
 const langs = Object.keys(i18n.services.resourceStore.data);
 addPrefetchExcludes([
@@ -19,25 +21,34 @@ addPrefetchExcludes([
     .map(lang => `${lang}/${i18n.t("search", { lng: lang })}`)
 ]);
 
+
+const methods = {
+  componentDidMount() {
+    loadTheme();
+  }
+};
+
 function App() {
   return (
-    <Root>
-      <React.Suspense fallback={Loader()}>
-        <Router>
-          <Search
-            path={`${i18n.t("search", { lng: i18n.t("defaultLang") })}`}
-          />
-          {langs.map(lang => (
+    <Root onLoad={() => loadTheme()}>
+      <div id="theme" className="theme-light">
+        <React.Suspense fallback={Loader()}>
+          <Router>
             <Search
-              key={lang}
-              path={`:lang/${i18n.t("search", { lng: lang })}`}
+              path={`${i18n.t("search", { lng: i18n.t("defaultLang") })}`}
             />
-          ))}
-          <Routes path="*" />
-        </Router>
-      </React.Suspense>
+            {langs.map(lang => (
+              <Search
+                key={lang}
+                path={`:lang/${i18n.t("search", { lng: lang })}`}
+              />
+            ))}
+            <Routes path="*" />
+          </Router>
+        </React.Suspense>
+      </div>
     </Root>
   );
 }
 
-export default App;
+export default lifecycle(methods)(App);

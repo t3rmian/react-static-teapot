@@ -67,5 +67,15 @@
                 text-align: right;
             }
         }
+
+        .post-logo {
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+
+            img {
+                max-height: 100px;
+            }
+        }
     }
 }

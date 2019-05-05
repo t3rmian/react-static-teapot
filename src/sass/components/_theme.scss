@@ -1,0 +1,111 @@
+$themes: (light: (primary-background-color: white,
+        primary-background-color-less-intense: #eee,
+        primary-border-color: #ddd,
+        primary-box-shadow-color: rgba(0, 0, 0, 0.5),
+        primary-color: #333,
+        primary-color-less-intense: #666,
+        primary-color-more-intense: black,
+        secondary-color: #108db8,
+        secondary-color-less-intense: #0d6b8a,
+    ),
+    dark: (primary-background-color: #333,
+        primary-background-color-less-intense: #444,
+        primary-border-color: #666,
+        primary-box-shadow-color: rgba(0, 0, 0, 0.75),
+        primary-color: #ccc,
+        primary-color-less-intense: #999,
+        primary-color-more-intense: white,
+        secondary-color: #ef7247,
+        secondary-color-less-intense: #f29475,
+    ),
+);
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+
+@mixin themify($themes: $themes) {
+
+    @each $theme,
+    $map in $themes {
+        $theme-map: () !global;
+
+        @each $key,
+        $submap in $map {
+            $value: map-get(map-get($themes, $theme), '#{$key}');
+            $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+
+        $selector: '.theme-#{$theme}';
+
+        @at-root #{&} #{$selector} {
+            @content;
+        }
+
+        $theme-map: null !global;
+    }
+}
+
+#root {
+    .theme-dark {
+
+        .post-logo img,
+        img.logo {
+            -webkit-filter: invert(1);
+            filter: invert(1);
+        }
+    }
+
+    @include themify($themes) {
+        background-color: themed('primary-background-color');
+
+        .container {
+            background-color: themed('primary-background-color');
+        }
+
+        *:not(button):not(input):not(a) {
+            color: themed('primary-color');
+        }
+
+        a,
+        button.link {
+            color: themed('secondary-color');
+        }
+
+        a:hover,
+        button.link:hover {
+            color: themed('secondary-color-less-intense');
+        }
+
+        .header-container {
+            * {
+                color: themed('primary-color-more-intense');
+            }
+
+            div * {
+                color: themed('primary-color-more-intense');
+            }
+        }
+
+        .langs {
+            .lang {
+                a[disabled] {
+                    color: themed('primary-color-less-intense');
+                }
+            }
+        }
+
+        .date-col {
+            color: themed('primary-color-less-intense');
+        }
+
+        .content img {
+            border-width: 1px;
+            border-style: outset;
+            border-color: themed('primary-border-color');
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 4px 4px 5px 0px themed('primary-box-shadow-color');
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import Languages from "../components/Languages";
+import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import React from "react";
 import i18n from "../i18n";
@@ -15,7 +15,7 @@ export default () => {
   return ready ? (
     <div className="loading">
       <h1>404</h1>
-      <Languages
+      <Footer
         langRefs={[
           ...langs
             .filter(lang => lang !== i18n.t("defaultLang"))

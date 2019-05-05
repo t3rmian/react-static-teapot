@@ -1,9 +1,10 @@
 import { Head } from "react-static";
 import { Link } from "components/Router";
 import React from "react";
+import Theme from "./Theme";
 import { useTranslation } from "react-i18next";
 
-export default function Languages({ langRefs }) {
+export default function Footer({ langRefs }) {
   const { t } = useTranslation();
   langRefs.sort((a, b) => t(a.lang).localeCompare(t(b.lang)));
 
@@ -37,6 +38,7 @@ export default function Languages({ langRefs }) {
             }))
         ]}
       />
+      <Theme/>
     </div>
   );
 }
