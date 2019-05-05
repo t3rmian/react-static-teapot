@@ -59,7 +59,8 @@ $themes: (light: (primary-background-color: white,
     @include themify($themes) {
         background-color: themed('primary-background-color');
 
-        .container {
+        .container,
+        .page {
             background-color: themed('primary-background-color');
         }
 

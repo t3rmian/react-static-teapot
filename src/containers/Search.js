@@ -1,18 +1,17 @@
-import React, { Component } from "react";
 import { capitalize, countSubstrings } from "../utils.js";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Loader from "../components/Loader";
 import Posts from "../components/Posts";
+import React from "react";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
-import { prefetch } from "react-static";
-import { withTranslation } from "react-i18next";
+import { useRouteData } from "react-static";
+import { useTranslation } from "react-i18next";
 
-async function AsyncSearch(props) {
-  const path = props.location.pathname;
-  const { t, i18n } = props;
+export default function Search() {
+  const { t } = useTranslation();
+
   let {
     home,
     posts,
@@ -20,12 +19,16 @@ async function AsyncSearch(props) {
     isDefaultLang,
     langRefs,
     tags,
-    root
-  } = await prefetch(props.lang == null ? "/" : "/" + props.lang);
-  i18n.changeLanguage(lang);
+    root,
+    path
+  } = useRouteData();
+  const url = typeof window !== "undefined" ? window.location.href : path;
 
-  const [, query] = props.location.href.split(path);
-  langRefs = langRefs.map(lr => mapLangRefWithQuery(lr, query));
+  const [, query] = url.split(path);
+  langRefs = langRefs.map(lr => ({
+    ...lr,
+    url: lr.url + query
+  }));
   const words = decodeURIComponent(query)
     .replace(/[.,]/g, " ")
     .replace(/\s\s+/g, " ")
@@ -40,10 +43,11 @@ async function AsyncSearch(props) {
   let header;
   if (words.length > 0) {
     header = t("Search results", {
-      parts: " " + words.map(word => '"' + word + '"').join(", ")
+      parts: " " + words.map(word => '"' + word + '"').join(", "),
+      lng: lang
     });
   } else {
-    header = t("Empty query");
+    header = t("Empty query", { lng: lang });
   }
 
   let content;
@@ -79,16 +83,6 @@ async function AsyncSearch(props) {
     </div>
   );
 
-  function mapLangRefWithQuery(langRef, query) {
-    return {
-      ...langRef,
-      url:
-        (langRef.url.endsWith("/")
-          ? `${langRef.url}${i18n.t("search", { lng: langRef.lang })}`
-          : `${langRef.url}/${i18n.t("search", { lng: langRef.lang })}`) + query
-    };
-  }
-
   function gradePost(post) {
     const titleHits = words
       .map(word => countSubstrings(post.title, word))
@@ -110,27 +104,3 @@ async function AsyncSearch(props) {
     };
   }
 }
-
-export class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { component: Loader() };
-  }
-
-  componentDidMount() {
-    AsyncSearch(this.props).then(component => this.setState({ component }));
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.location.href !== this.props.location.href) {
-      this.setState({ component: Loader() });
-      AsyncSearch(this.props).then(component => this.setState({ component }));
-    }
-  }
-
-  render() {
-    return this.state.component;
-  }
-}
-
-export default withTranslation()(Search);

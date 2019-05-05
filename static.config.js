@@ -1,10 +1,14 @@
 import I18nIndexes from "./src/model/I18nIndexes";
+import I18nSearch from "./src/model/I18nSearch";
 import I18nTags from "./src/model/I18nTags";
 import React from "react";
 import jdown from "jdown";
 import path from "path";
 
-const siteRoot = "https://react-static-teapot.netlify.com";
+const siteRoot =
+  process.env.NODE_ENV === "development"
+    ? "https://localhost:3000"
+    : "https://react-static-teapot.netlify.com";
 export default {
   siteRoot,
   getSiteData: () => ({
@@ -21,7 +25,8 @@ export default {
     );
     return [
       ...I18nIndexes(blog, defaultLanguage, home),
-      ...I18nTags(blog, defaultLanguage)
+      ...I18nTags(blog, defaultLanguage),
+      ...I18nSearch(blog, defaultLanguage, home)
     ];
   },
   plugins: [

@@ -32,21 +32,16 @@ export default function Theme() {
 }
 
 export const loadTheme = () => {
-  console.log("Loading theme... ");
-
-  if (typeof document !== "undefined") {
-    const cookies = new Cookies();
-    if (cookies.get("theme")) {
-      const theme = cookies.get("theme");
-      const themeManager = document.getElementById("theme");
-      if (!themeManager.classList.contains(theme)) {
-        [].slice
-          .call(themeManager.classList)
-          .filter(c => c.indexOf("theme-") >= 0)
-          .forEach(c => themeManager.classList.remove(c));
-        themeManager.classList.add(theme);
-        console.log("Reset theme to " + theme);
-      }
+  const cookies = new Cookies();
+  if (cookies.get("theme")) {
+    const theme = cookies.get("theme");
+    const themeManager = document.getElementById("theme");
+    if (!themeManager.classList.contains(theme)) {
+      [].slice
+        .call(themeManager.classList)
+        .filter(c => c.indexOf("theme-") >= 0)
+        .forEach(c => themeManager.classList.remove(c));
+      themeManager.classList.add(theme);
     }
   }
 };
