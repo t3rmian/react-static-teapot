@@ -1,7 +1,7 @@
-import { Link } from 'components/Router';
-import React from 'react';
-import { groupBy } from '../utils.js';
-import { useTranslation } from 'react-i18next';
+import { Link } from "components/Router";
+import React from "react";
+import { groupBy } from "../utils.js";
+import { useTranslation } from "react-i18next";
 
 export default function Posts(props) {
   const { posts } = props;
@@ -14,7 +14,9 @@ export default function Posts(props) {
       {postsByMonth.map(monthAndPosts => [
         <thead key={monthAndPosts[0]}>
           <tr>
-            <th className="date-head">{monthAndPosts[0]}</th>
+            <th colspan="2" className="date-head">
+              {monthAndPosts[0]}
+            </th>
           </tr>
         </thead>,
         <tbody key={monthAndPosts[0] + "-body"}>

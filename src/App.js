@@ -1,6 +1,6 @@
 import "./app.scss";
 
-import { Root, Routes } from "react-static";
+import { Head, Root, Routes } from "react-static";
 
 import Loader from "./components/Loader";
 import React from "react";
@@ -17,6 +17,9 @@ const methods = {
 function App() {
   return (
     <Root>
+      <Head>
+        <meta charSet="UTF-8" />
+      </Head>
       <div id="theme" className="theme-light">
         <React.Suspense fallback={Loader()}>
           <Router>

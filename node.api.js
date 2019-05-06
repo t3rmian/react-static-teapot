@@ -3,6 +3,23 @@ import fs from "fs-extra";
 import nodePath from "path";
 
 export default (options = {}) => ({
+  beforeDocumentToFile: (html, { meta }) => {
+    const divider = "div";
+    const divSplittage = html.split(divider);
+    if (divSplittage.length > 1) {
+      const scripts = divSplittage.pop();
+      return (
+        divSplittage.join("div") +
+        "div" +
+        scripts.replace(new RegExp(' defer="" type="text/javascript"', "g"), "")
+      );
+    } else {
+      return html.replace(
+        new RegExp(' defer="" type="text/javascript"', "g"),
+        ""
+      );
+    }
+  },
   afterExport: async state => {
     const {
       config: {
@@ -16,7 +33,6 @@ export default (options = {}) => ({
     const path = nodePath.join(DIST, filename);
     const allLines = fs.readFileSync(path).toString();
 
-    console.log(allLines);
     fs.writeFileSync(
       path,
       allLines

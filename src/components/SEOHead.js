@@ -33,7 +33,6 @@ export default ({
   return (
     <Head>
       <html lang={lang} />
-      <title>{title}</title>
       {noindex && <meta name="robots" content="noindex" />}
       <meta name="description" property="description" content={description} />
       {type && <meta property="og:type" content={type} />}

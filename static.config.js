@@ -71,10 +71,10 @@ export default {
     ],
     require.resolve("react-static-plugin-sass")
   ],
-  Document: ({ Html, Head, Body, children }) => (
-    <Html lang={undefined}>
+  Document: ({ Html, Head, Body, children }) => {
+    return(
+    <Html lang="x-default">
       <Head>
-        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="apple-touch-icon"
@@ -100,5 +100,5 @@ export default {
       </Head>
       <Body>{children}</Body>
     </Html>
-  )
+  )}
 };

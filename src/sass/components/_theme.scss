@@ -90,7 +90,7 @@ $themes: (light: (primary-background-color: white,
 
         .langs {
             .lang {
-                a[disabled] {
+                a[data-disabled] {
                     color: themed('primary-color-less-intense');
                 }
             }

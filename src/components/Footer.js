@@ -15,7 +15,7 @@ export default function Footer({ langRefs }) {
           <Link
             key={ref.lang}
             to={ref.url}
-            disabled={ref.selected === true}
+            data-disabled={ref.selected === true}
             hrefLang={ref.lang}
           >
             {t(ref.lang)}
