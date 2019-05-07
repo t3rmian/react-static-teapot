@@ -1,11 +1,10 @@
 @import 'sass/base/variables';
 @import 'sass/base/common';
+@import 'sass/base/theme';
 @import 'sass/components/header';
 @import 'sass/components/posts';
 @import 'sass/components/footer';
 @import 'sass/components/tag-cloud';
-@import 'sass/components/search-bar';
-@import 'sass/components/theme';
 @import 'sass/pages/index';
 @import 'sass/pages/post';
 @import 'sass/pages/tags';

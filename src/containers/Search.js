@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Posts from "../components/Posts";
 import React from "react";
-import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
@@ -60,7 +59,6 @@ export default function Search() {
   return (
     <div className="container search-container">
       <div className="page">
-        <SearchBar root={root} lang={lang} />
         <Header
           root={root}
           seo={{
@@ -77,10 +75,12 @@ export default function Search() {
             noindex
           }}
         />
+        <main>
         <div className="search-header">{header}</div>
         {content}
-        <Footer langRefs={langRefs} />
+        </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        <Footer langRefs={langRefs} />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@
     }
 
     .lang {
-        a[data-disabled] {
+        a[data-disabled=true] {
             pointer-events: none;
         }
     }

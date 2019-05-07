@@ -22,7 +22,7 @@ const resources = {
       "count minutes read": "{{count}} minute read",
       "count minutes read_plural": "{{count}} minutes read",
       "Not found": "404 - Oh no's! We couldn't find that page :(",
-      "Tag Cloud": "Tag Cloud",
+      "Tag cloud": "Tag cloud",
       "Updated": "Updated",
 
       "site title": "react-static-teapot",
@@ -47,7 +47,7 @@ const resources = {
       "count minutes read_1": "{{count}} minuty",
       "count minutes read_2": "{{count}} minut",
       "Not found": "404 - nic tu nie ma",
-      "Tag Cloud": "Chmura tagów",
+      "Tag cloud": "Chmura tagów",
       "Updated": "Aktualizacja",
       "blog template": "szablon bloga",
       "Light theme": "Jasny szablon",

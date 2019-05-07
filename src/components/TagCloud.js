@@ -7,13 +7,13 @@ export default function TagCloud({ tags, lang }) {
   tags.sort((a, b) => b.hits - a.hits);
 
   return (
-    <div className="tag-cloud">
-      {t("Tag Cloud", { lng: lang })}
+    <nav className="tag-cloud">
+      {t("Tag cloud", { lng: lang })}
       <div key={`tag-group`}>
         {tags.map(tag => (
           <Link key={tag.value} to={tag.path}>{` ${tag.value}`}</Link>
         ))}
       </div>
-    </div>
+    </nav>
   );
 }

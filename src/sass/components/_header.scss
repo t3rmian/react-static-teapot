@@ -23,4 +23,19 @@ header {
     .logo {
         max-width: 216px;
     }
+
+    .search-bar-container {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    
+        input {
+            padding-bottom: 2px;
+        }
+    
+        input,
+        button {
+            border-width: 1px;
+        }
+    }
 }

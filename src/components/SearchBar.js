@@ -18,7 +18,7 @@ export default props => {
   };
 
   return (
-    <div className="search-bar-container">
+    <div className="search-bar-container" role="search">
       <form
         onSubmit={e => onSubmit(e)}
         action={props.root + t("search", { lng: props.lang })}

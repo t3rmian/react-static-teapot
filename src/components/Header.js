@@ -1,6 +1,7 @@
 import { Link } from "components/Router";
 import React from "react";
 import SEOHead from "../components/SEOHead";
+import SearchBar from "./SearchBar";
 import convert from "htmr";
 
 export default props => {
@@ -9,6 +10,7 @@ export default props => {
 
   return (
     <header className="header-container">
+      <SearchBar root={root} lang={seo.lang} />
       <SEOHead {...seo} />
       <div className="header-row">
         <Link className="logo" to={root}>

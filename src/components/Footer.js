@@ -9,7 +9,7 @@ export default function Footer({ langRefs }) {
   langRefs.sort((a, b) => t(a.lang).localeCompare(t(b.lang)));
 
   return (
-    <div className="langs">
+    <footer className="langs">
       {langRefs.map(ref => (
         <span key={ref.lang} className="lang">
           <Link
@@ -39,6 +39,6 @@ export default function Footer({ langRefs }) {
         ]}
       />
       <Theme/>
-    </div>
+    </footer>
   );
 }

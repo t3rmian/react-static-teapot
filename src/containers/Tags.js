@@ -2,7 +2,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Posts from "../components/Posts";
 import React from "react";
-import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import { capitalize } from "../utils.js";
 import { useRouteData } from "react-static";
@@ -24,7 +23,6 @@ export default () => {
   return (
     <div className="container tags-container">
       <div className="page">
-        <SearchBar root={root} lang={lang} />
         <Header
           root={root}
           seo={{
@@ -41,10 +39,12 @@ export default () => {
             noindex
           }}
         />
-        <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>
-        <Posts posts={posts} />
-        <Footer langRefs={langRefs} />
+        <main>
+          <h2 className="uppercase">{t("Posts by tag", { tag, lng: lang })}</h2>
+          <Posts posts={posts} />
+        </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        <Footer langRefs={langRefs} />
       </div>
     </div>
   );

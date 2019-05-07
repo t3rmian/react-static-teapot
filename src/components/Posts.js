@@ -11,19 +11,29 @@ export default function Posts(props) {
   );
   return (
     <table>
-      {postsByMonth.map(monthAndPosts => (
-        <tbody key={monthAndPosts[0]}>
+      {postsByMonth.map(([month, posts]) => (
+        <tbody key={month}>
           <tr>
             <th colSpan="2" className="date-head">
-              {monthAndPosts[0]}
+              <time
+                dateTime={new Date(posts[0].date)
+                  .toISOString()
+                  .split("-")
+                  .slice(0, 2)
+                  .join("-")}
+              >
+                {month}
+              </time>
             </th>
           </tr>
-          {monthAndPosts[1].map(post => (
+          {posts.map(post => (
             <tr key={post.title}>
               <td className="date-col">
-                {t("date=month+day", {
-                  date: new Date(post.date)
-                })}
+                <time dateTime={new Date(post.date).toISOString()}>
+                  {t("date=month+day", {
+                    date: new Date(post.date)
+                  })}
+                </time>
               </td>
               <td>
                 <Link to={post.path}>{post.title}</Link>

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PostList from "../components/Posts";
-import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
@@ -31,7 +30,6 @@ export default () => {
   return (
     <div className="container index-container">
       <div className="page">
-        <SearchBar root={root} lang={lang} />
         <Header
           home={home}
           root={root}
@@ -59,9 +57,9 @@ export default () => {
               </button>
             </div>
           )}
-          <Footer langRefs={langRefs} />
-          <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
         </main>
+        <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        <Footer langRefs={langRefs} />
       </div>
     </div>
   );

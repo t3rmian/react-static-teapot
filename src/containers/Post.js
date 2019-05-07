@@ -62,71 +62,78 @@ export function Post() {
           twitterContentUsername={post.twitterAuthor}
           twitterCard="summary"
         />
-        <SearchBar root={root} lang={lang} />
-        <Link className="post-logo" to={root}>
-          <img src="/img/logo.png" alt="Logo" />
-        </Link>
-        <br />
-        <div className="header">
-          <h2 className="title">{post.title}</h2>
-          {post.tags && (
-            <div className="tags">
-              {post.tags.map(tag => (
-                <Link
-                  className="item"
-                  key={tag}
-                  to={`${tags.find(t => t.value === tag).path}`}
-                >
-                  {tag}
-                </Link>
-              ))}
+        <header>
+          <Link className="post-logo" to={root}>
+            <img src="/img/logo.png" alt="Logo" />
+          </Link>
+          <SearchBar root={root} lang={lang} />
+        </header>
+        <main>
+          <article>
+            <div className="header">
+              <h2 className="title">{post.title}</h2>
+              {post.tags && (
+                <div className="tags">
+                  {post.tags.map(tag => (
+                    <Link
+                      className="item"
+                      key={tag}
+                      to={`${tags.find(t => t.value === tag).path}`}
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              <div className="meta">
+                <span className="item">
+                  <time dateTime={new Date(post.date).toISOString()}>
+                    {t("date=post", {
+                      date: new Date(post.date),
+                      lng: lang
+                    })}
+                  </time>
+                </span>
+                {post.source && (
+                  <span className="item">
+                    <Link to={post.source}>{t("source", { lng: lang })}</Link>
+                  </span>
+                )}
+                <span className="item">
+                  {t("count minutes read", {
+                    count: minutesRead,
+                    lng: lang
+                  })}
+                </span>
+              </div>
             </div>
-          )}
-          <div className="meta">
-            <span className="item">
-              {t("date=post", {
-                date: new Date(post.date),
-                lng: lang
-              })}
-            </span>
-            {post.source && (
-              <span className="item">
-                <Link to={post.source}>{t("source", { lng: lang })}</Link>
-              </span>
-            )}
-            <span className="item">
-              {t("count minutes read", {
-                count: minutesRead,
-                lng: lang
-              })}
-            </span>
-          </div>
-        </div>
-        <div className="content">
-          {convert(post.contents)}
-          {(post.updated || post.author) && (
-            <table className="more">
-              <tbody>
-                <tr>
-                  {post.updated && (
-                    <td className="updated">
-                      {t("Updated", { lng: lang }) + ": "}
-                      {t("date=post", {
-                        date: new Date(post.updated),
-                        lng: lang
-                      })}
-                    </td>
-                  )}
-                  {post.author && <td className="author">{post.author}</td>}
-                </tr>
-              </tbody>
-            </table>
-          )}
-        </div>
-        <div className="footer">
-          <Footer langRefs={langRefs} />
-        </div>
+            <div className="content">
+              {convert(post.contents)}
+              {(post.updated || post.author) && (
+                <table className="more">
+                  <tbody>
+                    <tr>
+                      {post.updated && (
+                        <td className="updated">
+                          {t("Updated", { lng: lang }) + ": "}
+                          <time dateTime={new Date(post.updated).toISOString()}>
+                            {t("date=post", {
+                              date: new Date(post.updated),
+                              lng: lang
+                            })}
+                          </time>
+                        </td>
+                      )}
+                      {post.author && <td className="author">{post.author}</td>}
+                    </tr>
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </article>
+        </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        <Footer langRefs={langRefs} />
       </div>
     </div>
   );
