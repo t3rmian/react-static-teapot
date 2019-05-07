@@ -7,17 +7,21 @@ export default (options = {}) => ({
     const divider = "div";
     const divSplittage = html.split(divider);
     if (divSplittage.length > 1) {
-      const scripts = divSplittage.pop();
-      return (
-        divSplittage.join("div") +
-        "div" +
-        scripts.replace(new RegExp(' defer="" type="text/javascript"', "g"), "")
-      );
-    } else {
-      return html.replace(
-        new RegExp(' defer="" type="text/javascript"', "g"),
+      divSplittage[0] = divSplittage[0].replace(
+        new RegExp('<script charset="utf-8" ', "g"),
         ""
       );
+      const lastIndex = divSplittage.length - 1;
+      console.log(divSplittage[lastIndex])
+      divSplittage[lastIndex] = divSplittage[lastIndex].replace(
+        new RegExp(' type="text/javascript"', "g"),
+        ""
+      );
+      return divSplittage.join(divider);
+    } else {
+      return html
+        .replace(new RegExp(' type="text/javascript"', "g"), "")
+        .replace(new RegExp('<script charset="utf-8" ', "g"), "");
     }
   },
   afterExport: async state => {

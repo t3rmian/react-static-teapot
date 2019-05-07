@@ -11,15 +11,13 @@ export default function Posts(props) {
   );
   return (
     <table>
-      {postsByMonth.map(monthAndPosts => [
-        <thead key={monthAndPosts[0]}>
+      {postsByMonth.map(monthAndPosts => (
+        <tbody key={monthAndPosts[0]}>
           <tr>
-            <th colspan="2" className="date-head">
+            <th colSpan="2" className="date-head">
               {monthAndPosts[0]}
             </th>
           </tr>
-        </thead>,
-        <tbody key={monthAndPosts[0] + "-body"}>
           {monthAndPosts[1].map(post => (
             <tr key={post.title}>
               <td className="date-col">
@@ -33,7 +31,7 @@ export default function Posts(props) {
             </tr>
           ))}
         </tbody>
-      ])}
+      ))}
     </table>
   );
 }
