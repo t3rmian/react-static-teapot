@@ -26,7 +26,11 @@ export default {
     return [
       ...I18nIndexes(blog, defaultLanguage, home),
       ...I18nTags(blog, defaultLanguage),
-      ...I18nSearch(blog, defaultLanguage, home)
+      ...I18nSearch(blog, defaultLanguage, home),
+      {
+        path: "offline",
+        noindex: true
+      }
     ];
   },
   plugins: [
@@ -76,6 +80,7 @@ export default {
       <Html lang="x-default">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <script src="/pwabuilder-sw-register.js"/>
           <link
             rel="apple-touch-icon"
             sizes="180x180"

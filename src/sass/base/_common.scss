@@ -92,3 +92,14 @@ button.link {
         padding: 0 0.5em;
     }
 }
+
+pre {
+    font-family: monospace;
+}
+
+.ascii {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
