@@ -79,11 +79,7 @@ $themes: (light: (primary-background-color: white,
         }
 
         .header-container {
-            * {
-                color: themed('primary-color-more-intense');
-            }
-
-            div * {
+            *:not(button):not(input):not(a) {
                 color: themed('primary-color-more-intense');
             }
         }

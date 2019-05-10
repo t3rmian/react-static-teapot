@@ -1,13 +1,40 @@
 header {
+    @media (max-width: 640px) {
+        .header-row {
+            flex-direction: column;
+        }
+
+        .search-bar-container {
+            width: 200px;
+            text-align: center;
+            left: 50%;
+            transform: translate(-50%, 0);
+            
+        }
+    }
+
+    @media (min-width: 640px) {
+        .header-row {
+            .title-row {
+                padding-left: 2rem;
+
+                .logo-title {
+                    padding-top: 2rem;
+                }
+            }
+        }
+
+        .search-bar-container {
+            right: 2rem;
+        }
+    }
+
     .header-row {
         display: flex;
         align-items: center;
 
         .title-row {
-            padding-left: 2rem;
-
             .logo-title {
-                padding-top: 2rem;
                 display: flex;
                 align-items: flex-start;
                 flex-direction: column;
@@ -27,12 +54,11 @@ header {
     .search-bar-container {
         position: absolute;
         top: 2rem;
-        right: 2rem;
-    
+
         input {
             padding-bottom: 2px;
         }
-    
+
         input,
         button {
             border-width: 1px;
