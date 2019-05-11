@@ -1,11 +1,8 @@
 .post-container {
-    display: flex;
-    align-items: center;
 
     .page {
         max-width: 1050px;
         margin: 0 auto 0 auto;
-        padding: 2rem;
 
         @media screen and (max-width: 1400px) {
             .tag-cloud {
@@ -42,15 +39,18 @@
         .content {
             text-align: justify;
 
-            *:not(img) {
-                padding-left: 75px;
-                padding-right: 75px;
+            @media (min-width: 1050px) {
+                *:not(img) {
+                    padding-left: 75px;
+                    padding-right: 75px;
+                }
             }
 
             img {
                 display: block;
                 margin: 0 auto 0 auto;
                 max-width: 1050px;
+                width: 100%;
             }
         }
 
@@ -61,6 +61,7 @@
 
             .updated {
                 text-align: left;
+
                 * {
                     padding: 0;
                 }
@@ -72,13 +73,65 @@
         }
 
         .post-logo {
-            position: absolute;
-            top: 1.5rem;
-            left: 2rem;
+            @media (min-width: 640px) {
+                position: absolute;
+                left: 2rem;
+                top: 2rem;
+            }
 
             img {
                 max-height: 100px;
             }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .post-container {
+        .page {
+            min-width: 100px;
+            margin: 0 auto 0 auto;
+            padding: 2rem;
+
+            .post-logo {
+                position: relative;
+                display: block;
+                text-align: center;
+            }
+
+            header .search-bar-container {
+                display: none;
+            }
+
+            .title {
+                margin-top: 0;
+            }
+        }
+
+        *:not(header) .search-bar-container {
+            display: block;
+            text-align: center;
+            margin-top: 1.25rem;
+        }
+    }
+}
+
+@media (min-width: 640px) {
+    .post-container {
+        .page {
+            padding: 3rem 2rem 2rem 2rem;
+        }
+    }
+
+    footer+.search-bar-container {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .post-container {
+        .page {
+            padding: 1rem 1rem 1rem 1rem;
         }
     }
 }

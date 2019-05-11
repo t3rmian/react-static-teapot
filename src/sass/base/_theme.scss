@@ -84,6 +84,10 @@ $themes: (light: (primary-background-color: white,
             }
         }
 
+        .title {
+            color: themed('primary-color-more-intense');
+        }
+
         .langs {
             .lang {
                 a[data-disabled=true] {
@@ -100,9 +104,19 @@ $themes: (light: (primary-background-color: white,
             border-width: 1px;
             border-style: outset;
             border-color: themed('primary-border-color');
-            -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 10px 10px 5px 0px themed('primary-box-shadow-color');
+            -moz-box-shadow: 10px 10px 5px 0px themed('primary-box-shadow-color');
             box-shadow: 4px 4px 5px 0px themed('primary-box-shadow-color');
+        }
+
+        .updated,
+        .author,
+        .meta .item {
+            color: themed('primary-color-less-intense');
+        }
+
+        .meta .item * {
+            color: themed('primary-color-less-intense');
         }
     }
 }

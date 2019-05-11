@@ -134,6 +134,7 @@ export function Post() {
         </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
         <Footer langRefs={langRefs} />
+        <SearchBar root={root} lang={lang} />
       </div>
     </div>
   );
