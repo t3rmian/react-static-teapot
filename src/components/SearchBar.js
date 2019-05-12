@@ -2,7 +2,7 @@ import React from "react";
 import { navigate } from "components/Router";
 import { useTranslation } from "react-i18next";
 
-export default props => {
+export default ({root, lang}) => {
   const { t } = useTranslation();
   const onSubmit = e => {
     e.preventDefault();
@@ -18,10 +18,10 @@ export default props => {
   };
 
   return (
-    <div className="search-bar-container" role="search">
+    <div className={`search-bar-container fadeIn`} role="search">
       <form
         onSubmit={e => onSubmit(e)}
-        action={props.root + t("search", { lng: props.lang })}
+        action={root + t("search", { lng: lang })}
         className="search-bar"
       >
         <input type="search" name="q" />

@@ -7,7 +7,7 @@ export default function TagCloud({ tags, lang }) {
   tags.sort((a, b) => b.hits - a.hits);
 
   return (
-    <nav className="tag-cloud">
+    <nav className="tag-cloud fadeIn">
       {t("Tag cloud", { lng: lang })}
       <div key={`tag-group`}>
         {tags.map(tag => (

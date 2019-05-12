@@ -12,7 +12,6 @@ export default (options = {}) => ({
         ""
       );
       const lastIndex = divSplittage.length - 1;
-      console.log(divSplittage[lastIndex])
       divSplittage[lastIndex] = divSplittage[lastIndex].replace(
         new RegExp(' type="text/javascript"', "g"),
         ""

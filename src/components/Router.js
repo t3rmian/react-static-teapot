@@ -1,1 +1,1 @@
-export { Link, Router, navigate } from '@reach/router'
+export { Link, Router, navigate, Location } from '@reach/router'

@@ -1,16 +1,57 @@
 import "./app.scss";
 
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Head, Root, Routes } from "react-static";
+import { Location, Router } from "components/Router";
 
 import Loader from "./components/Loader";
 import React from "react";
-import { Router } from "components/Router";
 import lifecycle from "react-pure-lifecycle";
 import { loadTheme } from "components/Theme";
 
 const methods = {
   componentDidMount() {
     loadTheme();
+    const throttle = (ms, fun) => {
+      let isThrottled;
+      return (...args) => {
+        if (!isThrottled) {
+          fun(...args);
+          isThrottled = setTimeout(() => (isThrottled = false), ms);
+        }
+      };
+    };
+    const throttleTimeout = 25;
+    const minOffset = 50;
+    let visible = true;
+
+    document.addEventListener(
+      "scroll",
+      throttle(throttleTimeout, function(e) {
+        if (visible) {
+          if (e.srcElement.scrollTop > minOffset) {
+            visible = false;
+            document
+              .querySelectorAll("header .fadeIn, nav.fadeIn")
+              .forEach(c => {
+                c.classList.remove("fadeIn");
+                c.classList.add("fadeOut");
+              });
+          }
+        } else {
+          if (e.srcElement.scrollTop < minOffset) {
+            visible = true;
+            document
+              .querySelectorAll("header .fadeOut, nav.fadeOut")
+              .forEach(c => {
+                c.classList.remove("fadeOut");
+                c.classList.add("fadeIn");
+              });
+          }
+        }
+      }),
+      true
+    );
   }
 };
 
@@ -22,9 +63,27 @@ function App() {
       </Head>
       <div id="theme" className="theme-light">
         <React.Suspense fallback={Loader()}>
-          <Router>
-            <Routes path="*" />
-          </Router>
+          <Location>
+            {({ location }) => {
+              return (
+                <TransitionGroup className="transition-group">
+                  <CSSTransition
+                    key={location.pathname}
+                    className={location.pathname}
+                    classNames="fade"
+                    timeout={500}
+                  >
+                    <Router location={location} className="router">
+                      <Routes
+                        default
+                        routePath={decodeURI(location.pathname)}
+                      />
+                    </Router>
+                  </CSSTransition>
+                </TransitionGroup>
+              );
+            }}
+          </Location>
         </React.Suspense>
       </div>
     </Root>

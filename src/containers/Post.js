@@ -63,7 +63,7 @@ export function Post() {
           twitterCard="summary"
         />
         <header>
-          <Link className="post-logo" to={root}>
+          <Link className="post-logo fadeIn" to={root}>
             <img src="/img/logo.png" alt="Logo" />
           </Link>
           <SearchBar root={root} lang={lang} />
@@ -134,7 +134,7 @@ export function Post() {
         </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
         <Footer langRefs={langRefs} />
-        <SearchBar root={root} lang={lang} />
+        <SearchBar root={root} lang={lang}/>
       </div>
     </div>
   );
