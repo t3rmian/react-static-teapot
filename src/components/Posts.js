@@ -15,28 +15,34 @@ export default function Posts(props) {
         <tbody key={month}>
           <tr>
             <th colSpan="2" className="date-head">
-              <time
-                dateTime={new Date(posts[0].date)
-                  .toISOString()
-                  .split("-")
-                  .slice(0, 2)
-                  .join("-")}
-              >
-                {month}
-              </time>
+              <div className={posts.some(p => p.expanded) ? "expanded" : ""}>
+                <time
+                  dateTime={new Date(posts[0].date)
+                    .toISOString()
+                    .split("-")
+                    .slice(0, 2)
+                    .join("-")}
+                >
+                  {month}
+                </time>
+              </div>
             </th>
           </tr>
           {posts.map(post => (
             <tr key={post.title}>
               <td className="date-col">
-                <time dateTime={new Date(post.date).toISOString()}>
-                  {t("date=month+day", {
-                    date: new Date(post.date)
-                  })}
-                </time>
+                <div className={post.expanded ? "expanded" : ""}>
+                  <time dateTime={new Date(post.date).toISOString()}>
+                    {t("date=month+day", {
+                      date: new Date(post.date)
+                    })}
+                  </time>
+                </div>
               </td>
               <td>
-                <Link to={post.path}>{post.title}</Link>
+                <div className={post.expanded ? "expanded" : ""}>
+                  <Link to={post.path}>{post.title}</Link>
+                </div>
               </td>
             </tr>
           ))}

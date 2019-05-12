@@ -9,3 +9,27 @@
     opacity: 0;
     transition: visibility 0s 0.25s, opacity 0.25s linear;
 }
+
+table tbody .expanded {
+    opacity: 1;
+    animation: fade 1s linear;
+}
+
+@for $i from 2 through 5 {
+    table tbody:nth-child(#{$i}) .expanded {
+        opacity: 1;
+        animation: fade #{($i - 1) * 0.25}s linear;
+    }
+}
+
+@keyframes fade {
+    0% {
+        max-height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        max-height: 100px;
+        opacity: 100%;
+    }
+}
