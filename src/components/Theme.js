@@ -18,12 +18,20 @@ export default function Theme() {
   return (
     <div className="theme-switcher">
       <button onClick={() => switchTheme()}>
-        <span role="img" aria-label={t("Light theme")}>
-          ⚪
+        <span
+          role="img"
+          aria-label={t("Light theme")}
+          style={{ filter: "invert(1) contrast(10)" }}
+        >
+          ⚫
         </span>
         <span style={{ color: "white" }}>🢀</span>
         <span style={{ color: "black" }}>🢂</span>
-        <span role="img" aria-label={t("Dark theme")}>
+        <span
+          role="img"
+          aria-label={t("Dark theme")}
+          style={{ filter: "contrast(10)" }}
+        >
           ⚫
         </span>
       </button>

@@ -22,10 +22,10 @@
 
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 450ms ease-in;
+    transition: opacity $routing-transition-delay $routing-transition-timing-function !important;
 }
 
 .fade-exit.fade-exit-active {
     opacity: 0;
-    transition: opacity 450ms ease-in;
+    transition: opacity $routing-transition-delay $routing-transition-timing-function !important;
 }

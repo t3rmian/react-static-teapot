@@ -16,7 +16,7 @@ export default function Posts(blog, defaultLang, lang, tags, root) {
           .filter(lng => blog[lng].some(p => p.id === post.id))
           .map(lng => ({
             lang: lng,
-            url: `${lng}/${i18n.t("posts", { lng: lng })}/${
+            url: `/${lng}/${i18n.t("posts", { lng: lng })}/${
               blog[lng].find(p => p.id === post.id).url
             }`,
             selected: lng === lang
