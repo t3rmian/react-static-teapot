@@ -29,6 +29,16 @@ const methods = {
 
     const observer = new IntersectionObserver(onIntersection, options);
     images.forEach(image => observer.observe(image));
+
+    const script = document.createElement("script");
+    const anchor = document.getElementById("comments");
+    script.setAttribute("src", "https://utteranc.es/client.js");
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async", true);
+    script.setAttribute("repo", "t3rmian/react-static-teapot");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute( "theme", "github-light");
+    anchor.appendChild(script);
   }
 };
 
@@ -133,6 +143,7 @@ export function Post() {
           </article>
         </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
+        <div id="comments"></div>
         <Footer langRefs={langRefs} />
         <SearchBar root={root} lang={lang}/>
       </div>
