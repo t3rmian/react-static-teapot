@@ -5,6 +5,7 @@ import SEOHead from "../components/SEOHead";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import convert from "htmr";
+import { getCommentsTheme } from "../components/Theme";
 import lifecycle from "react-pure-lifecycle";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
@@ -33,11 +34,11 @@ const methods = {
     const script = document.createElement("script");
     const anchor = document.getElementById("comments");
     script.setAttribute("src", "https://utteranc.es/client.js");
-    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("crossorigin", "anonymous");
     script.setAttribute("async", true);
     script.setAttribute("repo", "t3rmian/react-static-teapot");
     script.setAttribute("issue-term", "pathname");
-    script.setAttribute( "theme", "github-light");
+    script.setAttribute("theme", getCommentsTheme());
     anchor.appendChild(script);
   }
 };
@@ -143,9 +144,9 @@ export function Post() {
           </article>
         </main>
         <TagCloud isDefaultLang={isDefaultLang} lang={lang} tags={tags} />
-        <div id="comments"></div>
+        <div id="comments" />
         <Footer langRefs={langRefs} />
-        <SearchBar root={root} lang={lang}/>
+        <SearchBar root={root} lang={lang} />
       </div>
     </div>
   );

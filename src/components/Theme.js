@@ -13,6 +13,22 @@ export default function Theme() {
       .filter(c => c.indexOf("theme-") >= 0)[0];
     const cookies = new Cookies();
     cookies.set("theme", theme);
+
+    const anchor = document.getElementById("comments");
+    if (anchor !== undefined) {
+      const commentsTheme = getCommentsTheme();
+      while (anchor.firstChild) {
+        anchor.removeChild(anchor.firstChild);
+      }
+      const script = document.createElement("script");
+      script.setAttribute("src", "https://utteranc.es/client.js");
+      script.setAttribute("crossorigin", "anonymous");
+      script.setAttribute("async", true);
+      script.setAttribute("repo", "t3rmian/react-static-teapot");
+      script.setAttribute("issue-term", "pathname");
+      script.setAttribute("theme", commentsTheme);
+      anchor.appendChild(script);
+    }
   };
 
   return (
@@ -38,6 +54,17 @@ export default function Theme() {
     </div>
   );
 }
+
+export const getCommentsTheme = () => {
+  const theme = new Cookies().get("theme");
+  const commentsTheme =
+    theme === undefined
+      ? "github-light"
+      : theme.indexOf("light") >= 0
+      ? "github-light"
+      : "photon-dark";
+  return commentsTheme;
+};
 
 export const loadTheme = () => {
   const cookies = new Cookies();
