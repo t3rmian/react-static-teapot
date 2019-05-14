@@ -12,6 +12,14 @@ import { loadTheme } from "components/Theme";
 const methods = {
   componentDidMount() {
     loadTheme();
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA-73928706-6");
+
     const throttle = (ms, fun) => {
       let isThrottled;
       return (...args) => {
