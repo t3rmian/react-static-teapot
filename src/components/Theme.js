@@ -15,7 +15,7 @@ export default function Theme() {
     cookies.set("theme", theme);
 
     const anchor = document.getElementById("comments");
-    if (anchor !== undefined) {
+    if (anchor != null) {
       const commentsTheme = getCommentsTheme();
       while (anchor.firstChild) {
         anchor.removeChild(anchor.firstChild);

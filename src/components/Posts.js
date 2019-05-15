@@ -15,7 +15,7 @@ export default function Posts(props) {
         <tbody key={month}>
           <tr>
             <th colSpan="2" className="date-head">
-              <div className={posts.some(p => p.expanded) ? "expanded" : ""}>
+              <div className={posts.some(p => !p.expanded) ? "" : "expanded"}>
                 <time
                   dateTime={new Date(posts[0].date)
                     .toISOString()

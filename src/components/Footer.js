@@ -22,6 +22,9 @@ export default function Footer({ langRefs }) {
           </Link>
         </span>
       ))}
+      <span className="lang">
+        <a href="https://github.com/t3rmian/react-static-teapot">©</a>
+      </span>
       <Head
         link={[
           ...langRefs.map(ref => ({
@@ -38,7 +41,7 @@ export default function Footer({ langRefs }) {
             }))
         ]}
       />
-      <Theme/>
+      <Theme />
     </footer>
   );
 }

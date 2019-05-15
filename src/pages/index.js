@@ -23,10 +23,11 @@ export default () => {
   posts.sort(function(a, b) {
     return new Date(b.date) - new Date(a.date);
   });
+  const expandFromIndex = 3;
   if (!expanded) {
-    posts = posts.slice(0, 1);
+    posts = posts.slice(0, expandFromIndex);
   } else {
-    for (let i = 1; i < posts.length; i++) {
+    for (let i = expandFromIndex; i < posts.length; i++) {
       posts[i].expanded = true;
     }
   }
