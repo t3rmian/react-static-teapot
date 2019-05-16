@@ -6,11 +6,12 @@ import { Location, Router } from "components/Router";
 
 import Loader from "./components/Loader";
 import React from "react";
+import config from "./template.config";
 import lifecycle from "react-pure-lifecycle";
 import { loadTheme } from "components/Theme";
 
 const methods = {
-  componentDidMount() {
+  componentDidMount(props) {
     loadTheme();
 
     window.dataLayer = window.dataLayer || [];
@@ -18,7 +19,7 @@ const methods = {
       window.dataLayer.push(arguments);
     }
     gtag("js", new Date());
-    gtag("config", "UA-73928706-6");
+    gtag("config", config.ga);
 
     const throttle = (ms, fun) => {
       let isThrottled;

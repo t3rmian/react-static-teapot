@@ -2,18 +2,14 @@ import I18nIndexes from "./src/model/I18nIndexes";
 import I18nSearch from "./src/model/I18nSearch";
 import I18nTags from "./src/model/I18nTags";
 import React from "react";
+import config from "./src/template.config";
 import jdown from "jdown";
 import path from "path";
 
-const siteRoot =
-  process.env.NODE_ENV === "development"
-    ? "https://localhost:3000"
-    : "https://react-static-teapot.netlify.com";
-const defaultLanguage = "en";
 export default {
-  siteRoot,
+  siteRoot: config.siteRoot,
   getSiteData: () => ({
-    siteRoot
+    siteRoot: config.siteRoot
   }),
   getRoutes: async () => {
     const blog = await jdown("content/posts", { fileInfo: true });
@@ -24,9 +20,9 @@ export default {
       })
     );
     return [
-      ...I18nIndexes(blog, defaultLanguage, home),
-      ...I18nTags(blog, defaultLanguage),
-      ...I18nSearch(blog, defaultLanguage, home),
+      ...I18nIndexes(blog, config.defaultLanguage, home),
+      ...I18nTags(blog, config.defaultLanguage),
+      ...I18nSearch(blog, config.defaultLanguage, home),
       {
         path: "offline",
         noindex: true
@@ -60,12 +56,12 @@ export default {
           data.langRefs.map(ref => {
             const key = `xhtml:link rel="alternate" hreflang="${
               ref.lang
-            }" href="${siteRoot}${ref.url}"`;
+            }" href="${config.siteRoot}${ref.url}"`;
             attributes[key] = "";
-            if (ref.lang === defaultLanguage) {
-              const defaultKey = `xhtml:link rel="alternate" hreflang="x-default" href="${siteRoot}${
-                ref.url
-              }"`;
+            if (ref.lang === config.defaultLanguage) {
+              const defaultKey = `xhtml:link rel="alternate" hreflang="x-default" href="${
+                config.siteRoot
+              }${ref.url}"`;
               attributes[defaultKey] = "";
             }
           });
@@ -80,7 +76,7 @@ export default {
       <Html lang="x-default">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <script src="/pwabuilder-sw-register.js"/>
+          <script src="/pwabuilder-sw-register.js" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -102,7 +98,12 @@ export default {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#b91d47" />
           <meta name="msapplication-TileColor" content="#b91d47" />
           <meta name="theme-color" content="#ffffff" />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73928706-6"/>
+          {config.ga && (
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${config.ga}`}
+            />
+          )}
         </Head>
         <Body>
           <noscript>
