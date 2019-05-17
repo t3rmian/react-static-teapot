@@ -10,13 +10,7 @@ Blog template build on *React Static*. This approach generates static blog from 
 
 The blog supports **multilingual** content as well as path translation. Basic sitemap with reflangs is provided. Standard **SEO** meta tags are generated based on content. Two **themes** - light and dark - are available with smooth **animations** and transitions. **Lazy image loading** has been implemented for posts to reduce data usage. For blog **comment system** a *utteranc.es* was chosen. The comments are saved and loaded dynamically per post path as github issues. Loading could be later moved to build process in case of meeting the quota. The pages were designed with **RWD** in mind. Favicons were generated in one of online creators which supports most of the systems.
 
-Additional features like small page sizes and instant loading come from *react-static*. Feel free to read more about it, and use this template with your own modifications! I used JavaScript and Sass in this project. For other components - check out `package.json`.
-
-### TODO
-- i18n comment system
-- refactor
-- make the template configurable
-- add some tests
+Additional features like small page sizes and instant loading come from *react-static*. Feel free to read more about it, and use this template with your own modifications! I used JavaScript and Sass in this project. For other components - check out `package.json`. For basic configuration refer to `/src/template.config.js`.
 
 ## License
 

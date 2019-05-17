@@ -5,41 +5,17 @@ import SEOHead from "../components/SEOHead";
 import SearchBar from "../components/SearchBar";
 import TagCloud from "../components/TagCloud";
 import convert from "htmr";
-import { getCommentsTheme } from "../components/Theme";
 import lifecycle from "react-pure-lifecycle";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
+import config from "../template.config";
+import { lazyLoadImages, loadComments } from "../utils"
+import { getCommentsTheme } from "../components/Theme"
 
 const methods = {
   componentDidMount() {
-    const images = document.querySelectorAll(".content img[data-src]");
-
-    const options = {
-      rootMargin: "100px 0px",
-      root: null
-    };
-
-    function onIntersection(images, observer) {
-      images.forEach(image => {
-        if (image.intersectionRatio > 0.001) {
-          observer.unobserve(image.target);
-          image.target.src = image.target.dataset.src;
-        }
-      });
-    }
-
-    const observer = new IntersectionObserver(onIntersection, options);
-    images.forEach(image => observer.observe(image));
-
-    const script = document.createElement("script");
-    const anchor = document.getElementById("comments");
-    script.setAttribute("src", "https://utteranc.es/client.js");
-    script.setAttribute("crossorigin", "anonymous");
-    script.setAttribute("async", true);
-    script.setAttribute("repo", "t3rmian/react-static-teapot");
-    script.setAttribute("issue-term", "pathname");
-    script.setAttribute("theme", getCommentsTheme());
-    anchor.appendChild(script);
+    lazyLoadImages(document.querySelectorAll(".content img[data-src]"))
+    loadComments(document.getElementById("comments"), config.commentsRepo, getCommentsTheme());
   }
 };
 

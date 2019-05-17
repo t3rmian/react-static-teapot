@@ -1,10 +1,11 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import config from './template.config';
 
 const resources = {
   en: {
     translation: {
-      defaultLang: "en",
+      defaultLang: config.defaultLanguage,
       en: "English",
       pl: "Polski",
       "date=year+month": "{{date, year+month}}",

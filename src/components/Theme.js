@@ -1,6 +1,7 @@
 import Cookies from "universal-cookie";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import config from "../template.config";
 
 export default function Theme() {
   const { t } = useTranslation();
@@ -20,14 +21,7 @@ export default function Theme() {
       while (anchor.firstChild) {
         anchor.removeChild(anchor.firstChild);
       }
-      const script = document.createElement("script");
-      script.setAttribute("src", "https://utteranc.es/client.js");
-      script.setAttribute("crossorigin", "anonymous");
-      script.setAttribute("async", true);
-      script.setAttribute("repo", "t3rmian/react-static-teapot");
-      script.setAttribute("issue-term", "pathname");
-      script.setAttribute("theme", commentsTheme);
-      anchor.appendChild(script);
+      loadComments(anchor, config.commentsRepo, commentsTheme);
     }
   };
 

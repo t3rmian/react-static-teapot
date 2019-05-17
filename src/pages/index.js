@@ -19,7 +19,9 @@ export default () => {
     tags,
     root
   } = useRouteData();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(
+    sessionStorage ? (sessionStorage.getItem("expanded") ? true : false) : false
+  );
   posts.sort(function(a, b) {
     return new Date(b.date) - new Date(a.date);
   });
@@ -57,7 +59,13 @@ export default () => {
           <PostList posts={posts} />
           {!expanded && (
             <div className="more">
-              <button className="link" onClick={() => setExpanded(true)}>
+              <button
+                className="link"
+                onClick={() => {
+                  sessionStorage.setItem("expanded", true);
+                  setExpanded(true);
+                }}
+              >
                 {t("More", { lng: lang })}
               </button>
             </div>
