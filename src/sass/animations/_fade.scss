@@ -3,7 +3,8 @@
     opacity: 1;
     transition:
         visibility $element-transition-delay $element-transition-timing-function,
-        opacity $element-transition-delay $element-transition-timing-function !important;
+        opacity $element-transition-delay $element-transition-timing-function,
+        color $theme-transition-delay $theme-transition-timing-function !important;
 }
 
 .fadeOut {
@@ -11,7 +12,8 @@
     opacity: 0;
     transition:
         visibility $element-transition-delay $element-transition-timing-function,
-        opacity $element-transition-delay $element-transition-timing-function !important;
+        opacity $element-transition-delay $element-transition-timing-function,
+        color $theme-transition-delay $theme-transition-timing-function !important;
 }
 
 table tbody .expanded {

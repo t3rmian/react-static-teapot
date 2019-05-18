@@ -20,7 +20,11 @@ export default () => {
     root
   } = useRouteData();
   const [expanded, setExpanded] = useState(
-    sessionStorage ? (sessionStorage.getItem("expanded") ? true : false) : false
+    typeof window !== "undefined"
+      ? window.sessionStorage.getItem("expanded")
+        ? true
+        : false
+      : false
   );
   posts.sort(function(a, b) {
     return new Date(b.date) - new Date(a.date);
@@ -62,7 +66,7 @@ export default () => {
               <button
                 className="link"
                 onClick={() => {
-                  sessionStorage.setItem("expanded", true);
+                  window.sessionStorage.setItem("expanded", true);
                   setExpanded(true);
                 }}
               >

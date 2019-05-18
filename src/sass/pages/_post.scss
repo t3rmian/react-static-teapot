@@ -36,6 +36,12 @@
             }
         }
 
+        @media (min-width: 1050px) {
+            #comments {
+                padding-right: 60px;
+            }
+        }
+
         .content {
             line-height: 1.4em;
             text-align: justify;
