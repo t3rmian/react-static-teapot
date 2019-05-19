@@ -14,12 +14,12 @@ export default props => {
       <SEOHead {...seo} />
       <div className="header-row">
         <Link className="logo" to={root}>
-          <img className="logo" src={logo} alt="react-static-teapot" />
+          <img className="logo" src={logo} alt="logo" />
         </Link>
         {home && (
           <div className="title-row">
             <div className="logo-title">
-              <h1>{home.title}</h1>
+              <h1>{home.siteTitle}</h1>
             </div>
             {home && (
               <div className="logo-description">{convert(home.contents)}</div>

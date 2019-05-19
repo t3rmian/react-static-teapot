@@ -46,7 +46,7 @@ export function Post() {
             ? new Date(post.updated)
             : new Date(post.date)
           ).toISOString()}
-          twitterContentUsername={post.twitterAuthor}
+          twitterContentUsername={post.twitterAuthor ? post.twitterAuthor : t("twitter author", { lng: lang })}
           twitterCard="summary"
         />
         <header>

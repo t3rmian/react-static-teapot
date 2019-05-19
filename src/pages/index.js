@@ -42,13 +42,10 @@ export default () => {
     <div className="container index-container">
       <div className="page">
         <Header
-          home={home}
+          home={{ ...home, siteTitle: t("site title", { lng: lang }) }}
           root={root}
           seo={{
-            title:
-              t("site title", { lng: lang }) +
-              ": " +
-              t("blog template", { lng: lang }),
+            title: t("site title", { lng: lang }) + ": " + home.title,
             description: home.contents,
             lang,
             date,

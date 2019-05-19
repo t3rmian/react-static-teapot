@@ -6,11 +6,14 @@ const resources = {
   en: {
     translation: {
       defaultLang: config.defaultLanguage,
+      "site title": config.siteTitle,
+      "twitter author": config.twitterAuthor,
       en: "English",
       pl: "Polski",
       "date=year+month": "{{date, year+month}}",
       "date=month+day": "{{date, month+day}}",
       "date=post": "{{date, year+month+day}}",
+      
       Recent: "Recent",
       "Posts by tag": "Posts by tag: {{tag}}",
       More: "More…",
@@ -26,10 +29,6 @@ const resources = {
       "Not found": "404 - Oh no's! We couldn't find that page :(",
       "Tag cloud": "Tag cloud",
       "Updated": "Updated",
-
-      "site title": "react-static-teapot",
-      "twitter author": "t3rmian",
-      "blog template": "blog template",
       "Light theme": "Light theme",
       "Dark theme": "Dark theme",
     }
@@ -52,7 +51,6 @@ const resources = {
       "Not found": "404 - nic tu nie ma",
       "Tag cloud": "Chmura tagów",
       "Updated": "Aktualizacja",
-      "blog template": "szablon bloga",
       "Light theme": "Jasny szablon",
       "Dark theme": "Ciemny szablon",
     }
