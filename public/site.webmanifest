@@ -1,8 +1,8 @@
 {
-    "name": "react-static-teapot: blog template",
-    "short_name": "react-static-teapot",
-    "lang": "en",
-    "start_url" :"https://react-static-teapot.netlify.com/",
+    "name": "template.config.js.siteLongTitle",
+    "short_name": "template.config.js.siteTitle",
+    "lang": "template.config.js.defaultLanguage",
+    "start_url" :"template.config.js.siteRoot",
     "orientation": "portrait-primary",
     "icons": [
         {

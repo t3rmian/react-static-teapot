@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import fs from "fs-extra";
 import nodePath from "path";
+import config from "./src/template.config";
 
 export default (options = {}) => ({
   beforeDocumentToFile: (html, { meta }) => {
@@ -30,34 +31,55 @@ export default (options = {}) => ({
       },
       staging
     } = state;
-    const filename = staging ? "sitemap.staging.xml" : "sitemap.xml";
-    console.log(`Reading ${filename}...`);
-
-    const path = nodePath.join(DIST, filename);
-    const allLines = fs.readFileSync(path).toString();
-
-    fs.writeFileSync(
-      path,
-      allLines
-        .replace(
-          "<urlset",
-          '<urlset xmlns:xhtml="http://www.w3.org/1999/xhtml"'
-        )
-        .split("></xhtml:link")
-        .map(e =>
-          e.indexOf("<urlset") > 0
-            ? e
-            : e
-                .split(">")
-                .slice(1)
-                .join(">")
-        )
-        .join("/>"),
-      () => {
-        console.log("Updating the file");
-      }
-    );
-
-    console.log(chalk.green(`[\u2713] ${filename} updated`));
+    fixMultilingualSitemap(DIST, staging);
+    applyManifestConfig(DIST);
   }
 });
+
+function fixMultilingualSitemap(DIST, staging) {
+  const filename = staging ? "sitemap.staging.xml" : "sitemap.xml";
+  console.log(`Reading ${filename}...`);
+  const path = nodePath.join(DIST, filename);
+  const allLines = fs.readFileSync(path).toString();
+  fs.writeFileSync(
+    path,
+    allLines
+      .replace("<urlset", '<urlset xmlns:xhtml="http://www.w3.org/1999/xhtml"')
+      .split("></xhtml:link")
+      .map(e =>
+        e.indexOf("<urlset") > 0
+          ? e
+          : e
+              .split(">")
+              .slice(1)
+              .join(">")
+      )
+      .join("/>"),
+    () => {
+      console.log("Updating the file");
+    }
+  );
+  console.log(chalk.green(`[\u2713] ${filename} updated`));
+}
+
+function applyManifestConfig(DIST) {
+  const filename = "site.webmanifest";
+  console.log(`Reading ${filename}...`);
+  const path = nodePath.join(DIST, filename);
+  const allLines = fs.readFileSync(path).toString();
+  const splittage = allLines.split("template.config.js.");
+  const output =
+    splittage[0] +
+    splittage
+      .slice(1)
+      .map(swap => {
+        const quoteSplittage = swap.split('"');
+        quoteSplittage[0] = config[quoteSplittage[0]];
+        return quoteSplittage.join('"');
+      })
+      .join('');
+  fs.writeFileSync(path, output, () => {
+    console.log("Updating the file");
+  });
+  console.log(chalk.green(`[\u2713] ${filename} updated`));
+}
