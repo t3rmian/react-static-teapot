@@ -83,7 +83,7 @@ export function Post() {
                 </span>
                 {post.source && (
                   <span className="item">
-                    <Link to={post.source}>{t("source", { lng: lang })}</Link>
+                    <a href={post.source}>{t("source", { lng: lang })}</a>
                   </span>
                 )}
                 <span className="item">

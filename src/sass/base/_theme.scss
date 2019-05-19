@@ -125,7 +125,7 @@ $themes: (light: (primary-background-color: white,
             transition: color $theme-transition-delay $theme-transition-timing-function;
         }
 
-        .meta .item * {
+        .meta .item *:not(a) {
             color: themed('primary-color-less-intense');
             transition: color $theme-transition-delay $theme-transition-timing-function;
         }

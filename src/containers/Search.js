@@ -52,7 +52,7 @@ export default function Search() {
 
   let content;
   if (matchingPosts.length > 0) {
-    content = <Posts posts={matchingPosts} />;
+    content = <Posts posts={matchingPosts} lang={lang} />;
   } else {
     content = <div>{t("No content")}</div>;
   }

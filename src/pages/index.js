@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import PostList from "../components/Posts";
+import Posts from "../components/Posts";
 import TagCloud from "../components/TagCloud";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
@@ -60,7 +60,7 @@ export default () => {
         />
         <main>
           <h2 className="uppercase">{t("Recent", { lng: lang })}</h2>
-          <PostList posts={posts} />
+          <Posts posts={posts} lang={lang} />
           {!expanded && (
             <div className="more">
               <button

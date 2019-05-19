@@ -1,13 +1,12 @@
 import { Link } from "components/Router";
 import React from "react";
-import { groupBy } from "../utils.js";
+import { capitalize, groupBy } from "../utils.js";
 import { useTranslation } from "react-i18next";
 
-export default function Posts(props) {
-  const { posts } = props;
+export default function Posts({ posts, lang }) {
   const { t } = useTranslation();
   const postsByMonth = groupBy(posts, post =>
-    t("date=year+month", { date: new Date(post.date) })
+    capitalize(t("date=year+month", { date: new Date(post.date), lng: lang }))
   );
   return (
     <table>
@@ -34,7 +33,8 @@ export default function Posts(props) {
                 <div className={post.expanded ? "expanded" : ""}>
                   <time dateTime={new Date(post.date).toISOString()}>
                     {t("date=month+day", {
-                      date: new Date(post.date)
+                      date: new Date(post.date),
+                      lng: lang
                     })}
                   </time>
                 </div>
