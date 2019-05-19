@@ -14,12 +14,14 @@ const methods = {
   componentDidMount(props) {
     loadTheme();
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
+    if (config.optional.ga) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", config.ga);
     }
-    gtag("js", new Date());
-    gtag("config", config.ga);
 
     const throttle = (ms, fun) => {
       let isThrottled;

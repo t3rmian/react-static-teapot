@@ -9,13 +9,19 @@ import lifecycle from "react-pure-lifecycle";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 import config from "../template.config";
-import { lazyLoadImages, loadComments } from "../utils"
-import { getCommentsTheme } from "../components/Theme"
+import { lazyLoadImages, loadComments } from "../utils";
+import { getCommentsTheme } from "../components/Theme";
 
 const methods = {
   componentDidMount() {
-    lazyLoadImages(document.querySelectorAll(".content img[data-src]"))
-    loadComments(document.getElementById("comments"), config.commentsRepo, getCommentsTheme());
+    lazyLoadImages(document.querySelectorAll(".content img[data-src]"));
+    if (config.optional.commentsRepo) {
+      loadComments(
+        document.getElementById("comments"),
+        config.optional.commentsRepo,
+        getCommentsTheme()
+      );
+    }
   }
 };
 
@@ -46,7 +52,11 @@ export function Post() {
             ? new Date(post.updated)
             : new Date(post.date)
           ).toISOString()}
-          twitterContentUsername={post.twitterAuthor ? post.twitterAuthor : t("twitter author", { lng: lang })}
+          twitterContentUsername={
+            post.twitterAuthor
+              ? post.twitterAuthor
+              : t("twitter author", { lng: lang })
+          }
           twitterCard="summary"
         />
         <header>

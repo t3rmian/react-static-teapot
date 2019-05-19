@@ -1,8 +1,8 @@
 {
-    "name": "template.config.js.siteLongTitle",
-    "short_name": "template.config.js.siteTitle",
-    "lang": "template.config.js.defaultLanguage",
-    "start_url" :"template.config.js.siteRoot",
+    "name": "$template.config.js.siteLongTitle",
+    "short_name": "$template.config.js.siteTitle",
+    "lang": "$template.config.js.defaultLanguage",
+    "start_url" :"$template.config.js.siteRoot",
     "orientation": "portrait-primary",
     "icons": [
         {

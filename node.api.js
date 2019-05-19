@@ -33,6 +33,8 @@ export default (options = {}) => ({
     } = state;
     fixMultilingualSitemap(DIST, staging);
     applyManifestConfig(DIST);
+    applyBraveRewardsConfig(DIST);
+    applyRobotsConfig(DIST);
   }
 });
 
@@ -67,7 +69,7 @@ function applyManifestConfig(DIST) {
   console.log(`Reading ${filename}...`);
   const path = nodePath.join(DIST, filename);
   const allLines = fs.readFileSync(path).toString();
-  const splittage = allLines.split("template.config.js.");
+  const splittage = allLines.split("$template.config.js.");
   const output =
     splittage[0] +
     splittage
@@ -77,9 +79,50 @@ function applyManifestConfig(DIST) {
         quoteSplittage[0] = config[quoteSplittage[0]];
         return quoteSplittage.join('"');
       })
-      .join('');
+      .join("");
   fs.writeFileSync(path, output, () => {
     console.log("Updating the file");
   });
+  console.log(chalk.green(`[\u2713] ${filename} updated`));
+}
+
+function applyBraveRewardsConfig(DIST) {
+  if (!config.optional.braveRewardsToken) {
+    return;
+  }
+  const filename = "./.well-known/brave-rewards-verification.txt";
+  console.log(`Reading ${filename}...`);
+  const path = nodePath.join(DIST, filename);
+  const allLines = fs.readFileSync(path).toString();
+  fs.writeFileSync(
+    path,
+    allLines
+      .replace("$template.config.js._siteRoot", config.siteRoot.split("//")[1])
+      .replace(
+        "$template.config.js.optional.braveRewardsToken",
+        config.optional.braveRewardsToken
+      ),
+    () => {
+      console.log("Updating the file");
+    }
+  );
+  console.log(chalk.green(`[\u2713] ${filename} updated`));
+}
+
+function applyRobotsConfig(DIST) {
+  if (!config.optional.disallow) {
+    return;
+  }
+  const filename = "robots.txt";
+  console.log(`Reading ${filename}...`);
+  const path = nodePath.join(DIST, filename);
+  const allLines = fs.readFileSync(path).toString();
+  fs.writeFileSync(
+    path,
+    allLines + "\n" + config.optional.disallow,
+    () => {
+      console.log("Updating the file");
+    }
+  );
   console.log(chalk.green(`[\u2713] ${filename} updated`));
 }

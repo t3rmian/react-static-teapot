@@ -21,7 +21,7 @@ export default function Theme() {
       while (anchor.firstChild) {
         anchor.removeChild(anchor.firstChild);
       }
-      loadComments(anchor, config.commentsRepo, commentsTheme);
+      loadComments(anchor, config.optional.commentsRepo, commentsTheme);
     }
   };
 

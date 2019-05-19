@@ -7,13 +7,13 @@ const resources = {
     translation: {
       defaultLang: config.defaultLanguage,
       "site title": config.siteTitle,
-      "twitter author": config.twitterAuthor,
+      "twitter author": config.optional.twitterAuthor,
       en: "English",
       pl: "Polski",
       "date=year+month": "{{date, year+month}}",
       "date=month+day": "{{date, month+day}}",
       "date=post": "{{date, year+month+day}}",
-      
+
       Recent: "Recent",
       "Posts by tag": "Posts by tag: {{tag}}",
       More: "More…",

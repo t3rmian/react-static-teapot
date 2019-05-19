@@ -98,7 +98,7 @@ export default {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#b91d47" />
           <meta name="msapplication-TileColor" content="#b91d47" />
           <meta name="theme-color" content="#ffffff" />
-          {config.ga && (
+          {config.optional.ga && (
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${config.ga}`}
