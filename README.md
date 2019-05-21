@@ -1,6 +1,8 @@
 # react-static-teapot
 
-Blog template build on *React Static*. This approach generates static blog from markdown posts. Both the blog structure and theme are designed in minimalistic style. The structure consists of the following pages:  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/18f3cce5-7c2f-4771-8a4d-a0d880de3b0d/deploy-status)](https://app.netlify.com/sites/react-static-teapot/deploys)
+
+Blog template build on *React Static*. **This** approach generates static blog from markdown posts. Both the blog structure and theme are designed in minimalistic style. The structure consists of the following pages:  
 - index
 - post
 - tags
