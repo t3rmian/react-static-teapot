@@ -1,4 +1,6 @@
 export default {
+  author: "Damian Terlecki",
+  authorSite: "https://t3rmian.github.io",
   siteTitle: "react-static-teapot",
   siteLongTitle: "react-static-teapot: blog template",
   siteRoot: "https://react-static-teapot.netlify.com",
