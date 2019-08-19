@@ -7,7 +7,7 @@ import { capitalize } from "../utils.js";
 import { useRouteData } from "react-static";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+export default function() {
   const { t } = useTranslation();
   let {
     posts,
